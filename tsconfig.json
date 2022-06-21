@@ -1,0 +1,37 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": "src",
+        "esModuleInterop": true,
+        "lib": [
+            "dom",
+            "esnext",
+            "scripthost"
+        ],
+        "jsx": "react",
+        "module": "commonjs",
+        "moduleResolution": "Node",
+        "paths": {
+            //"@common/*": ["common_modules/*"],
+            "*": ["node_modules/*"]
+        },
+        "sourceMap": true,
+        "removeComments": true,
+        "target": "es6",
+        "typeRoots": [
+            "node_modules/@types"
+        ],
+        "resolveJsonModule": true,
+        "types": ["react"]
+    },
+    "exclude": [
+        "node_modules",
+        "__tests__",
+    ],
+    "include": [
+        "src/**/*",
+        "typings.d.ts"
+    ]
+}
