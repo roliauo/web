@@ -1,9 +1,21 @@
 const webpack = require('webpack'); 
 const path = require('path');
 //const CopyWebpackPlugin = require('copy-webpack-plugin'); 
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin'); 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); 
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+
+const getEntry = () => {
+    const entry = {};
+    const apps = ['app_redux', 'shop'];
+    entry['index'] = './src/index.tsx';
+    apps.forEach((name) => {
+        entry[name] = `./src/${name}/index.tsx`
+    })
+    return entry;
+}
+
 const config = {
     mode: 'development',
     devServer: {
@@ -12,22 +24,27 @@ const config = {
           },
         compress: true,
         port: 8000,
-        historyApiFallback: {
+        historyApiFallback: { //entry pages
             rewrites: [
-              { from: /^\/$/, to: '/app_redux.html' },
-              { from: /^\/shop/, to: '/shop.html' },
-              //{ from: /./, to: '/views/404.html' },
+                //{ from: /^(\/(login)?)?$/, to: '/login.html' },
+                { from: /^\/$/, to: '/index.html' },
+                { from: /^\/apps$/, to: '/app_redux.html' },
+                { from: /^\/shop/, to: '/shop.html' },
+                // { from: /^\/apps$/, to: '/apps.html' },
+                //{ from: /./, to: '/views/404.html' },
             ],
           },
 
     },
     devtool: 'eval-source-map', 
-    entry: { 
-        //login: './src/login/index.tsx', 
-        //app: './src/app/index.tsx', 
-        app_redux: './src/app_redux/index.tsx',
-        shop: './src/shop/index.tsx',
-    }, 
+    entry: getEntry(),
+    // entry: { 
+    //     index: './src/index.tsx',
+    //     //login: './src/login/index.tsx', 
+    //     //app: './src/app/index.tsx', 
+    //     app_redux: './src/app_redux/index.tsx',
+    //     shop: './src/shop/index.tsx',
+    // }, 
     output: { 
         path: path.resolve(__dirname, './build_dev'), 
         filename: 'js/[name]/bundle.js', 
@@ -126,7 +143,7 @@ const config = {
             }, 
         ]), */
         new MiniCssExtractPlugin({ 
-            filename: 'css/[name]/styles.css', 
+            filename: 'css/[name]/style.css', 
         }), 
         new webpack.DefinePlugin({ 
             'process.env': { 
@@ -136,4 +153,17 @@ const config = {
     ], 
 };
 
-module.exports = [config]; 
+// generate html files
+Object.keys(config.entry).forEach((name) => {
+    config.plugins.push(new HtmlWebpackPlugin({
+        //template: `src/${name}/index.html`,
+        //template: `doc/template.html`,
+        template: `src/index.html`,
+        filename: `${name}.html`, 
+        title: name[0].toUpperCase().concat(name.slice(1)),
+        chunks:['js',`${name}`], //import js
+        
+    }));
+ });
+
+ module.exports = [config]; 
