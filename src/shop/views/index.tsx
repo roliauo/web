@@ -21,6 +21,7 @@ const View = () => {
     
     return (
         <StyleWrapper>
+            SHOP
             <div className="nav">
 
             </div>
