@@ -1,15 +1,15 @@
 // action types
-const CART_ADD = 'CART_ADD';
-const CART_CLEAR = 'CART_CLEAR';
+export const CART_ADD = 'CART_ADD';
+export const CART_CLEAR = 'CART_CLEAR';
 
 
 // action operations
-const addItem = (item) => ({
+export const addItem = (item) => ({
     type: CART_ADD,
     item,
 })
 
-const clearCart = () => ({
+export const clearCart = () => ({
     type: CART_CLEAR,
 })
 

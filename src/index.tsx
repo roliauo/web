@@ -5,9 +5,9 @@ const AppLinks = () => {
 
     return (
         <>
-            <a href="./"> Home </a>
-            <a href="./apps"> Apps </a>
-            <a href="./shop"> Shop </a>
+            <a href="./"> Home </a> |
+            <a href="./apps"> Apps </a> |
+            <a href="./shop"> Shop </a> 
         </>      
     )
 }
