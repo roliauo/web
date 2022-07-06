@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Nav from './Nav';
 import Header from './Header';
 import Footer from "./Footer";
+import {LINKS} from '../../constants';
 
 const StyleWrapper = styled.div`
     .nav {
@@ -10,12 +11,14 @@ const StyleWrapper = styled.div`
     }
 
     .header {
-        height: 100px;
-        background-color: aliceblue;        
+        height: 200px;
+        line-height: 200px;
+        background-color: var(--theme-color-header);        
     }
 
     .main {
-        height: calc(100vh - 100px);
+        height: calc(100vh - 200px);
+        background: var(--theme-color-main);
     }
 
     .footer {
@@ -23,21 +26,13 @@ const StyleWrapper = styled.div`
     }
 `
 
-const links = [
-    {name: 'Home', url:'/shop', hover: '首頁'},
-    {name: 'Login', url:'/shop/login', hover: '登入'},
-    //{name: 'Log out', url:'/shop/logout', hover: '登出'},
-    {name: 'Member', url:'/shop/member', hover: '會員'},
-    {name: 'Products', url:'/shop/products', hover: '商品'},
-    {name: 'Cart', url:'/shop/cart', hover: '購物車'},
-]
 
 const Layout = (props) => {
         
     return (
         <StyleWrapper>
             <div className="nav">
-                <Nav links={links} />
+                <Nav links={LINKS} />
             </div>
             <div className="header">
                <Header />

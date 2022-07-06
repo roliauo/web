@@ -1,18 +1,26 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+import {PATH_HOME} from '../../constants';
 
 const StyleWrapper = styled.div`
     
     .title {
         text-align: center;
-        line-height: 100px;
+        font-size: 1.5rem;
+    }
+
+    .link {
+        color: #3b6e36;
     }
 `
 
 const Header = () => {
     return(
-        <StyleWrapper>
-            <div className="title"> Header </div>
+        <StyleWrapper>          
+            <Link className="link" to={PATH_HOME.url}> 
+                <div className="title"> Header </div>
+            </Link>
         </StyleWrapper>
     )
 }
