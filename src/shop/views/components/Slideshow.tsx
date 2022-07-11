@@ -44,8 +44,9 @@ const StyleWrapper = styled.div`
         100% { left: -100%; opacity: 0;}
     }
    
-    .pagination {
-        position: relative;
+    .pagination {        
+        position: absolute;
+        bottom: 0;
         text-align: center;
         width: 100%;
         padding: 8px;
