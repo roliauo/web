@@ -1,13 +1,7 @@
-import React, {useState} from "react";
+import React, {Fragment, useState} from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-
-interface I_Link{
-    name: string;
-    url: string;
-    hover: string;
-}
-
+import {I_Link} from '../../constants';
 interface I_Props {
     links: I_Link[];
 }
@@ -17,8 +11,6 @@ const StyleWrapper = styled.nav`
     justify-content: flex-end;
     background: #a3a380;  //#6c7f9f
     color: #fff;
-    height: 2rem;
-    line-height: 2rem;
     
     .link {
         position: relative;
@@ -88,19 +80,19 @@ const StyleWrapper = styled.nav`
 
 `
 
-const Nav = (props: I_Props) => {
+function Nav(props: I_Props) {
     const {links = []} = props;
     
     if (links.length > 0)
     return (
         <StyleWrapper>
             {links.map((m, i) => 
-                <>
-                    <Link key={i} className="link" to={m.url}> 
+                <Fragment key={i}>
+                    <Link className="link" to={m.url}> 
                         <span data-hover={m.hover} data-base={m.name}/>
                     </Link>
                     { (i+1 < links.length)  && <span> / </span> }
-                </>
+                </Fragment>
               
                 )
             }

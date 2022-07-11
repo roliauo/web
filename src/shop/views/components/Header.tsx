@@ -15,7 +15,7 @@ const StyleWrapper = styled.div`
     }
 `
 
-const Header = () => {
+function Header() {
     return(
         <StyleWrapper>          
             <Link className="link" to={PATH_HOME.url}> 

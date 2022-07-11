@@ -2,22 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import './root.css';
 import Layout from "./components/Layout";
+import Slideshow from "./components/Slideshow";
+import { SLIDESHOWS } from "../constants";
 
-const Main = () => {
-    return(
-        <main>
-            Main
-        </main>
-    )
-}
 
-const View = () => {
-    
+export default function View() {
     return (
         <Layout>
-            <Main />
+            <Slideshow slideshows={SLIDESHOWS}/>
         </Layout>
     )  
 }
-
-export default View;
