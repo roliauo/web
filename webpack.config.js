@@ -56,25 +56,32 @@ const config = {
                         loader: 'css-loader', 
                         options: { 
                             importLoaders: 1, 
+                            url: false,
                         }, 
                     }
                 ], 
             }, 
             { 
-                test: /\.(png|jpg|gif|woff|woff2|eot|ttf|svg|cur)$/, 
+                test: /\.(woff|woff2|eot|ttf|svg|cur)$/, 
+                //// copy file without url (css-loader url: false) 
                 use: { 
-                    loader: 'url-loader', 
-                    options: { 
-                        limit: 8192, 
-                        name: 'media/index/[name].[ext]', 
-                    }, 
+                    loader: 'file-loader', 
+                    options: {
+                        name: 'css/font/[name].[ext]'
+                   }
                 }, 
+                
             }, 
-            /*{ 
-                test: /\.txt$/i, 
-                exclude: /node_modules/, 
-                loader: 'raw-loader', 
-            }, */
+            { 
+                test: /\.(png|jpg|gif)$/, 
+                use: { 
+                    loader: 'file-loader', 
+                    options: {
+                        name: 'media/[name].[ext]'
+                   }
+                }, 
+                
+            },  
         ], 
     }, 
     optimization: { 
@@ -105,6 +112,7 @@ Object.keys(config.entry).forEach((name) => {
         // template: `src/${name}/index.html`,
         template: `src/index.html`,
         filename: `${name}.html`, 
+        title: name[0].toUpperCase().concat(name.slice(1)),
         chunks:['js',`${name}`], 
         minify: true
     }));

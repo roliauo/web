@@ -24,7 +24,7 @@
             "node_modules/@types"
         ],
         "resolveJsonModule": true,
-        "types": ["react"]
+        "types": ["react", "node"]
     },
     "exclude": [
         "node_modules",

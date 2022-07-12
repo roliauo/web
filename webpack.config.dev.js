@@ -82,38 +82,42 @@ const config = {
                         loader: 'css-loader', 
                         options: { 
                             importLoaders: 1, 
+                            url: false,
                         }, 
                     }, 
-                    /*{ 
-                        loader: 'postcss-loader', 
-                        options: { 
-                            ident: 'postcss', 
-                            plugins: (loader) => ( 
-                                [ 
-                                    require('postcss-import')( 
-                                        { 
-                                            path: ['app/styles'], 
-                                        } 
-                                    ), 
-                                    require('postcss-mixins')({}), 
-                                    require('postcss-simple-vars')({ silent: true }), 
-                                    require('postcss-nested')({}), 
-                                ] 
-                            ), 
-                        }, 
-                    }, */
                 ], 
             }, 
+            // { 
+            //     test: /\.(png|jpg|gif|woff|woff2|eot|ttf|svg|cur)$/, 
+            //     use: { 
+            //         loader: 'url-loader', 
+            //         options: { 
+            //             limit: 8192, 
+            //             name: 'media/index/[name].[ext]', 
+            //         }, 
+            //     }, 
+            // },
             { 
-                test: /\.(png|jpg|gif|woff|woff2|eot|ttf|svg|cur)$/, 
+                test: /\.(woff|woff2|eot|ttf|svg|cur)$/, 
+                //// copy file without url (css-loader url: false) 
                 use: { 
-                    loader: 'url-loader', 
-                    options: { 
-                        limit: 8192, 
-                        name: 'media/index/[name].[ext]', 
-                    }, 
+                    loader: 'file-loader', 
+                    options: {
+                        name: 'css/font/[name].[ext]'
+                   }
                 }, 
+                
             }, 
+            { 
+                test: /\.(png|jpg|gif)$/, 
+                use: { 
+                    loader: 'file-loader', 
+                    options: {
+                        name: 'media/[name].[ext]'
+                   }
+                }, 
+                
+            },  
             /*{ 
                 test: /\.txt$/i, 
                 exclude: /node_modules/, 

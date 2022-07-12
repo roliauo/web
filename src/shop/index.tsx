@@ -7,9 +7,11 @@ import store from './state/store';
 import Home from './views/Home';
 import PageProducts from './views/PageProducts';
 
+//window.location.pathname || ''
+
 const ShopRouter = () => {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
             <Routes>
                 {/* <Route path='/' element={} exact/> */}
                 <Route path='/shop' element={<Home/>} />
