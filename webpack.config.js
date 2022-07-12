@@ -31,9 +31,6 @@ const config = {
         }, 
         extensions: ['.ts', '.tsx', '.js', '.json'], 
     },
-    /*node: { 
-        fs: 'empty', 
-    }, */
     module: { 
         rules: [ 
             { 
@@ -61,24 +58,6 @@ const config = {
                             importLoaders: 1, 
                         }, 
                     }
-                    /*{ 
-                        loader: 'postcss-loader', 
-                        options: { 
-                            ident: 'postcss', 
-                            plugins: (loader) => ( 
-                                [ 
-                                    require('postcss-import')( 
-                                        { 
-                                            path: ['app/styles'], 
-                                        } 
-                                    ), 
-                                    require('postcss-mixins')({}), 
-                                    require('postcss-simple-vars')({ silent: true }), 
-                                    require('postcss-nested')({}), 
-                                ] 
-                            ), 
-                        }, 
-                    }, */
                 ], 
             }, 
             { 
@@ -109,16 +88,6 @@ const config = {
         ], 
     }, 
     plugins: [ 
-        /*new CopyWebpackPlugin([ 
-            { 
-                from: 'app/favicon.ico', 
-                to: 'favicon.ico', 
-            }, 
-            { 
-                from: 'doc/api', 
-                to: 'api', 
-            }, 
-        ]), */
         new MiniCssExtractPlugin({ 
             filename: 'css/[name]/style.css', 
         }), 
