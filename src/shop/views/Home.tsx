@@ -9,7 +9,7 @@ import { SLIDESHOWS } from "../constants";
 export default function View() {
     return (
         <Layout>
-            {/* <Slideshow slideshows={SLIDESHOWS}/> */}
+            <Slideshow slideshows={SLIDESHOWS}/>
         </Layout>
     )  
 }
