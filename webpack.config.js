@@ -56,7 +56,7 @@ const config = {
                         loader: 'css-loader', 
                         options: { 
                             importLoaders: 1, 
-                            url: false,
+                            //url: false,
                         }, 
                     }
                 ], 
@@ -73,11 +73,11 @@ const config = {
                 
             }, 
             { 
-                test: /\.(png|jpg|gif)$/, 
+                test: /\.(png|jpeg|jpg|gif)$/, 
                 use: { 
                     loader: 'file-loader', 
                     options: {
-                        name: 'media/[name].[ext]'
+                        name: '[path][name].[ext]'
                    }
                 }, 
                 
