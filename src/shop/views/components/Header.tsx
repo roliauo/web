@@ -19,7 +19,7 @@ function Header() {
     return(
         <StyleWrapper>          
             <Link className="link" to={PATH_HOME.url}> 
-                <div className="title"> Header </div>
+                <div className="title"> &#8499; Header </div>
             </Link>
         </StyleWrapper>
     )

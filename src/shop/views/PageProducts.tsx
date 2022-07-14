@@ -1,6 +1,10 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import Layout from "./components/Layout";
+import CollapsibleMenu from "./components/CollapsibleMenu";
+
+import {I_MenuItem} from './components/CollapsibleMenu';
+import dataService from '../service/dataService';
 
 const StyleWrapperTwoColumns = styled.div`
     display: flex;
@@ -8,6 +12,7 @@ const StyleWrapperTwoColumns = styled.div`
 
     > aside {
         flex: 24%;
+        overflow: hidden;
     }
 
     > main {
@@ -15,27 +20,40 @@ const StyleWrapperTwoColumns = styled.div`
     }
 `;
 
-const Main = () => {
-    return(
-        <>
-            <aside>
-                Aside
-            </aside>
-            <main>
-                Page - Products
-            </main>
-        </>
-    )
+function Sidebar() {
+
 }
 
-const View = () => {
 
-    return (
+const View = () => {
+    const [menu, setMenu] = useState<I_MenuItem[]>([]);
+
+    useEffect(() => {
+        dataService.getSidebarMenu()
+            .then((resData) => {
+                console.log(resData);
+                setMenu(resData); 
+            }) 
+    }, []);
+
+    return(
         <Layout>
             <StyleWrapperTwoColumns>
-               <Main/>
+                <aside>
+                    {
+                        menu.length > 0 &&
+                        menu.map((m) => 
+                            <CollapsibleMenu key={m.id} menuItems={m} />
+                        )
+
+                    }
+                </aside>
+                <main>
+                    Page - Products
+                </main>
             </StyleWrapperTwoColumns>
         </Layout>
+       
     )
 }
 
