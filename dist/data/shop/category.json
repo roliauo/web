@@ -1,0 +1,18 @@
+[
+    {"id": 1, "name": "新品上市", "icon": "", "children": []},
+    {"id": 2, "name": "優惠活動", "icon": "", "children": [
+        {"id": 2.1, "name": "針織。兩件399", "icon": "", "children": []},
+        {"id": 2.2, "name": "周年慶。三件6折", "icon": "", "children": []},
+        {"id": 2.3, "name": "限時490", "icon": "", "children": []},
+        {"id": 2.4, "name": "限時590", "icon": "e", "children": []}
+    ]},
+    {"id": 3, "name": "熱銷推薦", "icon": "", "children": []},
+    {"id": 4, "name": "上身", "icon": "", "children": [
+        {"id": 4.1, "name": "襯衫", "icon": "", "children": []},
+        {"id": 4.2, "name": "休閒", "icon": "", "children": []},
+        {"id": 4.3, "name": "背心", "icon": "", "children": []}
+    ]},
+    {"id": 5, "name": "下身", "icon": "", "children": []},
+    {"id": 6, "name": "連身 / 洋裝", "icon": "", "children": []},
+    {"id": 7, "name": "外套", "icon": "", "children": []}
+]
