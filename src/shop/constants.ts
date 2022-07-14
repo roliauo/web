@@ -1,4 +1,5 @@
-const BASE_URL = "https://roliauo.github.io/web/";
+export const BASE_URL = "https://roliauo.github.io/web/";
+export const LOCAL_URL = "http://192.168.50.48:8000/";
 
 export const PATH_HOME = {name: 'Home', url:'/', hover: '首頁'};
 
@@ -22,17 +23,10 @@ export interface I_Slideshow {
     imgSrc: string;
 }
 
-export const SLIDESHOWS_BANNER: I_Slideshow[] = [
-    {url: '', imgSrc:`media/pic/banner/1.jpg`},
-    {url: '', imgSrc:`media/pic/banner/2.jpg`},
-    {url: '', imgSrc:`media/pic/banner/3.jpg`},
-    {url: '', imgSrc:`media/pic/banner/4.jpg`},
-]
-
 export const SLIDESHOWS_BANNER_URL: I_Slideshow[] = [
-    {url: '', imgSrc:`${BASE_URL}media/pic/banner/1.jpg`},
-    {url: '', imgSrc:`${BASE_URL}media/pic/banner/2.jpg`},
-    {url: '', imgSrc:`${BASE_URL}media/pic/banner/3.jpg`},
-    {url: '', imgSrc:`${BASE_URL}media/pic/banner/4.jpg`},
+    {url: '', imgSrc:`${BASE_URL}media/shop/pic/banner/1.jpg`},
+    {url: '', imgSrc:`${BASE_URL}media/shop/pic/banner/2.jpg`},
+    {url: '', imgSrc:`${BASE_URL}media/shop/pic/banner/3.jpg`},
+    {url: '', imgSrc:`${BASE_URL}media/shop/pic/banner/4.jpg`},
 ]
 

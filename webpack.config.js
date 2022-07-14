@@ -1,6 +1,6 @@
 const webpack = require('webpack'); 
 const path = require('path');
-//const CopyWebpackPlugin = require('copy-webpack-plugin'); 
+const CopyWebpackPlugin = require('copy-webpack-plugin'); 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin'); 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); 
@@ -95,6 +95,22 @@ const config = {
         ], 
     }, 
     plugins: [ 
+        new CopyWebpackPlugin({
+            patterns: [ 
+                { 
+                    from: 'src/shop/data', 
+                    to: 'data/shop', 
+                }, 
+                {
+                    from: 'src/shop/media', 
+                    to: 'media/shop', 
+                },
+                { 
+                    from: 'src/favicon.ico', 
+                    to: 'favicon.ico', 
+                }, 
+            ]
+        }), 
         new MiniCssExtractPlugin({ 
             filename: 'css/[name]/style.css', 
         }), 
@@ -112,7 +128,7 @@ Object.keys(config.entry).forEach((name) => {
         // template: `src/${name}/index.html`,
         template: `src/index.html`,
         filename: `${name}.html`, 
-        title: name[0].toUpperCase().concat(name.slice(1)),
+        title: 'Mandy Lin - React Website', //name[0].toUpperCase().concat(name.slice(1)),
         chunks:['js',`${name}`], 
         minify: true
     }));

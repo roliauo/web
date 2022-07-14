@@ -33,8 +33,8 @@ const InputBox = (props: Props) => {
     )
 }
 
-const StyledComponent = styled(InputBox)`
+const StyledInput = styled(InputBox)`
     width: 150px;
 `
 
-export default StyledComponent;
+export default StyledInput;
