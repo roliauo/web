@@ -1,12 +1,12 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
-import {LOCAL_URL} from '../constants';
+import {LOCAL_URL, BASE_URL} from '../constants';
 
 class HttpClient { //implements IHttpClient
     private _http: AxiosInstance;
 
     constructor() {
         this._http = axios.create({
-            baseURL: process.env.NODE_ENV === 'development' ? LOCAL_URL : '',
+            baseURL: process.env.NODE_ENV === 'development' ? LOCAL_URL : BASE_URL,
             timeout: 1800000,
             // headers: {
             //     Authorization: `Bearer ${tools.getCookie('access_token')}`,
