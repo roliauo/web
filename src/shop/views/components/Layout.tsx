@@ -6,7 +6,7 @@ import Footer from "./Footer";
 import {NAV_LINKS} from '../../constants';
 
 const StyleWrapper = styled.div<{isTop: boolean;}>`
-    width: 100vw;
+    width: 100%;
     min-width: 300px;
     
     .fixed {

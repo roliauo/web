@@ -68,7 +68,7 @@
     }
 
 `;t.default=function(){return a.default.createElement(u,null,a.default.createElement(i.Link,{className:"link",to:l.PATH_HOME.url},a.default.createElement("div",{className:"title"}," ℳ Header ")))}},5279:function(e,t,n){"use strict";var r=this&&this.__createBinding||(Object.create?function(e,t,n,r){void 0===r&&(r=n);var a=Object.getOwnPropertyDescriptor(t,n);a&&!("get"in a?!t.__esModule:a.writable||a.configurable)||(a={enumerable:!0,get:function(){return t[n]}}),Object.defineProperty(e,r,a)}:function(e,t,n,r){void 0===r&&(r=n),e[r]=t[n]}),a=this&&this.__setModuleDefault||(Object.create?function(e,t){Object.defineProperty(e,"default",{enumerable:!0,value:t})}:function(e,t){e.default=t}),o=this&&this.__importStar||function(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var n in e)"default"!==n&&Object.prototype.hasOwnProperty.call(e,n)&&r(t,e,n);return a(t,e),t},i=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(t,"__esModule",{value:!0});const l=o(n(7294)),u=i(n(8804)),s=i(n(3759)),c=i(n(1387)),f=i(n(4344)),d=n(8345),p=u.default.div`
-    width: 100vw;
+    width: 100%;
     min-width: 300px;
     
     .fixed {
