@@ -1,27 +1,25 @@
 import React, {Fragment, useState} from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import {I_Link} from '../../constants';
+import {I_NAV_LINKS} from '../../constants';
 interface I_Props {
-    links: I_Link[];
+    links: I_NAV_LINKS[];
 }
 
 const StyleWrapper = styled.nav`
     display: flex;
     justify-content: flex-end;
-    background: #a3a380;  //#6c7f9f
-    color: #fff;
+    height: inherit;
+    padding: 0 0.5rem;
     
     .link {
+        display: flex;
         position: relative;
-        color: #fff;
+        background: inherit;
+        color: inherit;
         text-decoration: none;
-
-        // :after {
-        //     content: '/';
-        //     color: #fff;
-        //     margin-left: 6px;
-        // }
+        width: 100px;
+        transition: .4s;
 
         :last-child::after {
             opacity: 0;
@@ -29,7 +27,7 @@ const StyleWrapper = styled.nav`
 
         >span {
             display: inline-block;
-            width: 100px;
+            width: inherit;
         }
 
         >span:before, >span:after {
@@ -37,11 +35,11 @@ const StyleWrapper = styled.nav`
             position: absolute;
             text-align: center;
             top: 0;
-            left: 0;
+            right: 0;
             margin-top: -1rem;
             opacity: 0;
-            width: 100%; 
-            transition: 0.3s;
+            width: calc(100% - 1.5rem); 
+            transition: .3s;
             //background: inherit;
         }
 
@@ -62,19 +60,54 @@ const StyleWrapper = styled.nav`
             >span:before {
                 opacity: 0;
             }
-
-            // span:after {  // highlight
-            //     content: '';
-            //     background-color: rgba(0, 0, 0, .5);
-            //     width: 100%;
-            //     height: 1px;
-            //     position: absolute;
-            //     left: 0;
-            //     bottom: -3px;
-            //     transition: .12s;
-            // }
         }
 
+        i {
+            line-height: inherit;
+            font-size: 1rem;
+            margin-left: 8px;
+        }
+    }
+ 
+    .divider {
+        display: inline;
+        &:last-child {
+            display: none;
+        }
+    }
+
+    .mobile-menu-button {
+        position: absolute;
+        left: -100px;
+        padding: 0 1rem;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: left .3s;
+        //display: none;
+    }
+
+    @media (max-width: 767px) {
+        // [class*="mobile-"] {
+        //     display: block !important;
+        // }
+
+        .mobile-menu-button {
+            left: 0;
+        }
+
+        i {
+            font-size: 1.2rem;
+        }
+
+        .link > span, .divider {
+            //display: none;
+            opacity: 0;
+            width: 0;
+        }
+
+        .link {
+            width: 48px;
+        }
 
     }
 
@@ -86,12 +119,14 @@ function Nav(props: I_Props) {
     if (links.length > 0)
     return (
         <StyleWrapper>
+            <div className="mobile-menu-button"> &#9776; </div>
             {links.map((m, i) => 
                 <Fragment key={i}>
                     <Link className="link" to={m.url}> 
+                        <i className={m.iconClassName}>{m.icon}</i>
                         <span data-hover={m.hover} data-base={m.name}/>
                     </Link>
-                    { (i+1 < links.length)  && <span> / </span> }
+                    <span className="divider"> / </span>
                 </Fragment>
               
                 )

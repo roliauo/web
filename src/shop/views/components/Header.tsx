@@ -8,11 +8,9 @@ const StyleWrapper = styled.div`
     .title {
         text-align: center;
         font-size: 1.5rem;
+        line-height: 150px;
     }
 
-    .link {
-        color: #3b6e36;
-    }
 `
 
 function Header() {

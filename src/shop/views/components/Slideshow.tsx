@@ -20,8 +20,10 @@ const StyleWrapper = styled.div`
         animation: slide-out 0.4s 1;
 
         img {
-            width: 100%;
             height: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+            display: block;
         }
 
         &.active {

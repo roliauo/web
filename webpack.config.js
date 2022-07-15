@@ -128,7 +128,7 @@ Object.keys(config.entry).forEach((name) => {
         // template: `src/${name}/index.html`,
         template: `src/index.html`,
         filename: `${name}.html`, 
-        title: 'Mandy Lin - React Website', //name[0].toUpperCase().concat(name.slice(1)),
+        title: '&#8475;', //name[0].toUpperCase().concat(name.slice(1)),
         chunks:['js',`${name}`], 
         minify: true
     }));

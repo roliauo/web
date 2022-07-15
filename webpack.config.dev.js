@@ -168,7 +168,7 @@ Object.keys(config.entry).forEach((name) => {
     config.plugins.push(new HtmlWebpackPlugin({
         template: `src/index.html`,
         filename: `${name}.html`, 
-        title: '&#8499; Mandy Lin - React Website', //name[0].toUpperCase().concat(name.slice(1)),
+        title: '&#8475;', //name[0].toUpperCase().concat(name.slice(1)),
         chunks:['js',`${name}`], //import js
         
     }));

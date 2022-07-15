@@ -1,6 +1,10 @@
 :root {
-    --theme-color-main: #f7f9e2;
-    --theme-color-header: #bbd8b2;
+    --bg-color-main: #fff7f7;
+    --bg-color-header: #c29895; /*#f2c6c6*/
+    --nav-bg-blue: #4056ae;
+    --nav-bg: #c29895;
+    --nav-color: #fff;
+    --header-color: #fff9dd;
 }
 
 body {
@@ -13,6 +17,7 @@ body {
 
 a {
     text-decoration: none;
+    color: inherit;
 }
 
 li {
@@ -25,8 +30,8 @@ li {
     flex-direction: row;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 768px) {
     .flex-container {
       flex-direction: column;
     }
-  }
+}

@@ -1,54 +1,94 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Nav from './Nav';
 import Header from './Header';
 import Footer from "./Footer";
-import {LINKS} from '../../constants';
+import {NAV_LINKS} from '../../constants';
 
-const StyleWrapper = styled.div`
+const StyleWrapper = styled.div<{isTop: boolean;}>`
     width: 100vw;
+    min-width: 300px;
     
     .fixed {
         position: fixed;
         width: 100%;
         top: 0;
-        z-index: 900;
+        z-index: 100;
     }
 
     .nav {
         height: 2rem;
         line-height: 2rem;
+        background: var(--nav-bg); 
+        color: var(--nav-color); 
+
+        ${props => !props.isTop ? 
+            `position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;` : ''}
     }
 
     .header {
-        height: 150px;
+        height: ${props => props.isTop ? "150px" : "0"};
         line-height: 150px;
-        background-color: var(--theme-color-header);        
+        background-color: var(--bg-color-header); 
+        color: var(--header-color);
+        transition: 0.3s;    
     }
 
     .main {
-        margin-top: calc(150px + 2rem);
+        //margin-top: calc(150px + 2rem);
+        margin-top:  ${props => props.isTop ? "0" : "2rem"};
         height: 100vh; 
-        background: var(--theme-color-main);
+        background: var(--bg-color-main);
     }
 
     .footer {
         
     }
+
+    /* Phone */
+    @media screen (max-width: 767px) {
+        //flex-direction: column;
+    }
+
+    /* Tablet*/
+    @media screen (min-width: 768px) {
+
+    }
+
+    /* Desktop */
+    @media screen (min-width: 1024px) {
+
+    }
 `
 
 
 function Layout(props) {
+
+    // TODO: move to Nav to avoid randering full page
+    const [isTop, setIsTop] = useState(true);
+
+    useEffect(() => {
+        window.onscroll = () => handleOnScroll();
+    }, [])
+
+    function handleOnScroll() {
+        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+            setIsTop(false);
+        } else {
+            setIsTop(true);
+        }
+    }
         
     return (
-        <StyleWrapper>
-            <div className="fixed">
-                <div className="nav">
-                    <Nav links={LINKS} />
-                </div>
-                <div className="header">
+        <StyleWrapper isTop={isTop}>
+            <div className="header">
                     <Header />
-                </div>
+            </div>
+            <div className="nav">
+                <Nav links={NAV_LINKS} />
             </div>
             
             <div className="main">
