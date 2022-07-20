@@ -13,6 +13,7 @@ body {
     box-sizing: border-box;
     font-family: monospace, 微軟正黑體;
     font-size: 14px;
+    user-select: none;
 }
 
 a {
@@ -30,8 +31,19 @@ li {
     flex-direction: row;
 }
 
+/* Phone */
 @media (max-width: 768px) {
     .flex-container {
       flex-direction: column;
     }
+}
+
+/* Tablet*/
+@media (min-width: 768px) {
+
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+
 }

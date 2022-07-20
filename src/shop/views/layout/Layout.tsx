@@ -73,6 +73,7 @@ function Layout(props) {
 
     useEffect(() => {
         window.onscroll = () => handleOnScroll();
+        return () => window.removeEventListener('scroll', handleOnScroll);
     }, [])
 
     function handleOnScroll() {
@@ -90,8 +91,7 @@ function Layout(props) {
             </div>
             <div className="nav">
                 <Nav links={NAV_LINKS} />
-            </div>
-            
+            </div>          
             <div className="main">
                 {props.children}
             </div>

@@ -17,11 +17,12 @@ const StyleWrapper = styled.div`
 function Sidebar(props: Props) {
 
     useEffect(() => {
-        console.log('updateSidebarMenu');
-        dataService.getSidebarMenu()
-            .then((resData) => {
-                props.updateSidebarMenu(resData); 
-            }) 
+        if (props.menu.length == 0) {
+            dataService.getSidebarMenu()
+                .then((resData) => {
+                    props.updateSidebarMenu(resData); 
+                }) 
+        }
     }, []);
 
     return (  

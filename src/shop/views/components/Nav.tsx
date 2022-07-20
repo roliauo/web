@@ -2,6 +2,7 @@ import React, {Fragment, useState} from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import {I_NAV_LINKS} from '../../constants';
+import SidebarContainer from "../layout/SidebarContainer";
 interface I_Props {
     links: I_NAV_LINKS[];
 }
@@ -86,6 +87,30 @@ const StyleWrapper = styled.nav`
         //display: none;
     }
 
+    .mobile-menu {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 100;
+        top: 0;
+        left: 0;
+        background-color: #f7d3d3;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+
+        &.active {
+            width: 250px;
+        }
+
+        .btn-close {
+            position: absolute;
+            top: 0;
+            right: 0.5rem;
+            font-size: 2rem;
+        }
+    }
+
     @media (max-width: 767px) {
         // [class*="mobile-"] {
         //     display: block !important;
@@ -114,20 +139,26 @@ const StyleWrapper = styled.nav`
 `
 
 function Nav(props: I_Props) {
+    const [showMobileMenu, setShowMobileMenu] = useState(false);
     const {links = []} = props;
-    
-    if (links.length > 0)
+        
     return (
         <StyleWrapper>
-            <div className="mobile-menu-button"> &#9776; </div>
-            {links.map((m, i) => 
-                <Fragment key={i}>
-                    <Link className="link" to={m.url}> 
-                        <i className={m.iconClassName}>{m.icon}</i>
-                        <span data-hover={m.hover} data-base={m.name}/>
-                    </Link>
-                    <span className="divider"> / </span>
-                </Fragment>
+            <div className="mobile-menu-button" onClick={() => setShowMobileMenu(!showMobileMenu)}> &#9776; </div>
+            <div className={ showMobileMenu ? 'mobile-menu active' : 'mobile-menu'}>
+                <div className="btn-close" onClick={() => setShowMobileMenu(false)}>&times;</div>
+                <SidebarContainer />
+            </div>
+            {
+                links.length > 0 &&
+                links.map((m, i) => 
+                    <Fragment key={i}>
+                        <Link className="link" to={m.url}> 
+                            <i className={m.iconClassName}>{m.icon}</i>
+                            <span data-hover={m.hover} data-base={m.name}/>
+                        </Link>
+                        <span className="divider"> / </span>
+                    </Fragment>
               
                 )
             }

@@ -15,7 +15,7 @@ const StyleWrapper = styled.div`
         visibility: hidden;
         position: absolute;
         width: 100%;
-        height: 600px;
+        height: inherit;
         top: 0;
         left: 0;
         animation: slide-out 0.4s 1;
@@ -69,6 +69,11 @@ const StyleWrapper = styled.div`
                 background-color: #e0a3a3;
             }
         }
+    }
+
+    /* Phone */
+    @media (max-width: 768px) {
+       height: 280px;
     }
 `
 interface I_Slideshow {

@@ -1,15 +1,11 @@
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
-import Layout from "./Layout";
-import CollapsibleMenu from "../components/CollapsibleMenu";
 import SidebarContainer from "./SidebarContainer";
-
-import {I_MenuItem} from '../components/CollapsibleMenu';
-import dataService from '../../service/dataService';
 
 const StyleWrapperTwoColumns = styled.div`
     display: flex;
     flex-wrap: wrap;
+    height: inherit;
 
     > aside {
         flex: 24%;
@@ -19,30 +15,27 @@ const StyleWrapperTwoColumns = styled.div`
     > main {
         flex: 76%;
     }
+
+    /* Phone */
+    @media (max-width: 768px) {
+        > aside {
+            display: none;
+        }
+    }
 `;
 
 
-const View = () => {
-    const [menu, setMenu] = useState<I_MenuItem[]>([]);
-
-    // useEffect(() => {
-    //     dataService.getSidebarMenu()
-    //         .then((resData) => {
-    //             setMenu(resData); 
-    //         }) 
-    // }, []);
+function View() {
 
     return(
-        <Layout>
-            <StyleWrapperTwoColumns>
-                <aside>
-                    <SidebarContainer />
-                </aside>
-                <main>
-                    Page - Products
-                </main>
-            </StyleWrapperTwoColumns>
-        </Layout>
+        <StyleWrapperTwoColumns>
+            <aside>
+                <SidebarContainer />
+            </aside>
+            <main>
+                Page - Products
+            </main>
+        </StyleWrapperTwoColumns>
        
     )
 }
