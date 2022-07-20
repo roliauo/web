@@ -4,8 +4,8 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import store from './state/store';
-import Home from './views/Home';
-import PageProducts from './views/PageProducts';
+import Home from './views/layout/PageHome';
+import PageProducts from './views/layout/PageProducts';
 
 //basename={process.env.PUBLIC_URL || window.location.pathname || ''}
 

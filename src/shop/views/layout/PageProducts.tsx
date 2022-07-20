@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
-import Layout from "./components/Layout";
-import CollapsibleMenu from "./components/CollapsibleMenu";
+import Layout from "./Layout";
+import CollapsibleMenu from "../components/CollapsibleMenu";
+import SidebarContainer from "./SidebarContainer";
 
-import {I_MenuItem} from './components/CollapsibleMenu';
-import dataService from '../service/dataService';
+import {I_MenuItem} from '../components/CollapsibleMenu';
+import dataService from '../../service/dataService';
 
 const StyleWrapperTwoColumns = styled.div`
     display: flex;
@@ -20,33 +21,22 @@ const StyleWrapperTwoColumns = styled.div`
     }
 `;
 
-function Sidebar() {
-
-}
-
 
 const View = () => {
     const [menu, setMenu] = useState<I_MenuItem[]>([]);
 
-    useEffect(() => {
-        dataService.getSidebarMenu()
-            .then((resData) => {
-                console.log(resData);
-                setMenu(resData); 
-            }) 
-    }, []);
+    // useEffect(() => {
+    //     dataService.getSidebarMenu()
+    //         .then((resData) => {
+    //             setMenu(resData); 
+    //         }) 
+    // }, []);
 
     return(
         <Layout>
             <StyleWrapperTwoColumns>
                 <aside>
-                    {
-                        menu.length > 0 &&
-                        menu.map((m) => 
-                            <CollapsibleMenu key={m.id} menuItems={m} />
-                        )
-
-                    }
+                    <SidebarContainer />
                 </aside>
                 <main>
                     Page - Products

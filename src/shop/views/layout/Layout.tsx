@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Nav from './Nav';
-import Header from './Header';
-import Footer from "./Footer";
+import Nav from '../components/Nav';
+import Header from '../components/Header';
+import Footer from "../components/Footer";
 import {NAV_LINKS} from '../../constants';
+import '../root.css';
 
 const StyleWrapper = styled.div<{isTop: boolean;}>`
     width: 100%;
@@ -23,7 +24,7 @@ const StyleWrapper = styled.div<{isTop: boolean;}>`
         color: var(--nav-color); 
 
         ${props => !props.isTop ? 
-            `position: fixed;
+            `position: sticky;
             width: 100%;
             top: 0;
             z-index: 100;` : ''}
@@ -85,7 +86,7 @@ function Layout(props) {
     return (
         <StyleWrapper isTop={isTop}>
             <div className="header">
-                    <Header />
+                <Header />
             </div>
             <div className="nav">
                 <Nav links={NAV_LINKS} />

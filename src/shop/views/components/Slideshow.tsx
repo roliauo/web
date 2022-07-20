@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const StyleWrapper = styled.div`
     position: relative;
-    width: 100vw;
+    width: 100%;
     height: 600px;
     margin: auto;
     overflow: hidden;
@@ -20,7 +21,7 @@ const StyleWrapper = styled.div`
         animation: slide-out 0.4s 1;
 
         img {
-            height: 100%;
+            max-height: 100%;
             max-width: 100%;
             margin: 0 auto;
             display: block;
@@ -96,9 +97,9 @@ export default function Slideshow (props: Props) {
             {
                 slideshows.map((m, i) =>
                     <div className={slideIndex == i ? "slideshow active" : "slideshow"} key={i}>
-                        <a href={m.url}>
+                        <Link to={m.url}>
                             <img src={m.imgSrc}/>
-                        </a>
+                        </Link>
                     </div>
                 )
             }
