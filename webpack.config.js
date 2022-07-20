@@ -26,8 +26,7 @@ const config = {
     }, 
     resolve: { 
         alias: { 
-            '@app': path.resolve(__dirname, './src/app'), 
-            //'@common': path.resolve(__dirname, './src/common_modules'), 
+            '@shop': path.resolve(__dirname, './src/shop'), 
         }, 
         extensions: ['.ts', '.tsx', '.js', '.json'], 
     },

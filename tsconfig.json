@@ -14,8 +14,8 @@
         "module": "commonjs",
         "moduleResolution": "Node",
         "paths": {
-            //"@common/*": ["common_modules/*"],
-            "*": ["node_modules/*"]
+            "*": ["node_modules/*"],
+            "@shop/*": ["shop/*"],
         },
         "sourceMap": true,
         "removeComments": true,
