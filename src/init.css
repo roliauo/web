@@ -1,12 +1,3 @@
-:root {
-    --bg-color-main: #fff7f7;
-    --bg-color-header: #c29895; /*#f2c6c6*/
-    --nav-bg-blue: #4056ae;
-    --nav-bg: #c29895;
-    --nav-color: #fff;
-    --header-color: #fff9dd;
-}
-
 body {
     margin: 0;
     padding: 0;
