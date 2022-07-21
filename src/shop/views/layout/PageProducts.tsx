@@ -6,6 +6,7 @@ const StyleWrapperTwoColumns = styled.div`
     display: flex;
     flex-wrap: wrap;
     height: inherit;
+    min-height: 100vh;
 
     > aside {
         flex: 24%;

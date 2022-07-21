@@ -39,9 +39,7 @@ const StyleWrapper = styled.div<{isTop: boolean;}>`
     }
 
     .main {
-        //margin-top: calc(150px + 2rem);
-        margin-top:  ${props => props.isTop ? "0" : "2rem"};
-        height: 100vh; 
+        margin-top:  ${props => props.isTop ? "0" : "80px"};
         background: var(--bg-color-main);
     }
 

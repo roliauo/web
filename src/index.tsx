@@ -89,7 +89,7 @@ const StyleWrapper = styled.div`
     }
 
     .version {
-        color: #f5f7ff;
+        color: #f5f7ffc2;
         position: absolute;
         bottom: 1rem;
         right: 1rem;

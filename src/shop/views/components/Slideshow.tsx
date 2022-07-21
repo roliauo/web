@@ -5,7 +5,7 @@ import styled from "styled-components";
 const StyleWrapper = styled.div`
     position: relative;
     width: 100%;
-    height: 600px;
+    height: 628px;
     margin: auto;
     overflow: hidden;
 

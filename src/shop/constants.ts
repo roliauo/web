@@ -27,9 +27,9 @@ export interface I_Slideshow {
 }
 
 export const SLIDESHOWS_BANNER_URL: I_Slideshow[] = [
-    {url: '/products', imgSrc:`${BASE_URL}media/shop/pic/banner/1.jpg`},
-    {url: '/products', imgSrc:`${BASE_URL}media/shop/pic/banner/2.jpg`},
-    {url: '/products', imgSrc:`${BASE_URL}media/shop/pic/banner/3.jpg`},
-    {url: '/products', imgSrc:`${BASE_URL}media/shop/pic/banner/4.jpg`},
+    {url: '/products', imgSrc:`${BASE_URL}media/shop/pic/banner/1.png`},
+    {url: '/products', imgSrc:`${BASE_URL}media/shop/pic/banner/2.png`},
+    {url: '/products', imgSrc:`${BASE_URL}media/shop/pic/banner/3.png`},
+    {url: '/products', imgSrc:`${BASE_URL}media/shop/pic/banner/4.png`},
 ]
 
