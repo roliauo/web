@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import Nav from '../components/Nav';
 import Header from '../components/Header';
@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 import {NAV_LINKS} from '../../constants';
 import '../root.css';
 
-const StyleWrapper = styled.div<{isTop: boolean;}>`
+const StyleWrapper = styled.div`
     width: 100%;
     min-width: 300px;
     
@@ -23,15 +23,16 @@ const StyleWrapper = styled.div<{isTop: boolean;}>`
         background: var(--nav-bg); 
         color: var(--nav-color); 
 
-        ${props => !props.isTop ? 
-            `position: sticky;
+        &.sticky {
+            position: sticky;
             width: 100%;
             top: 0;
-            z-index: 100;` : ''}
+            z-index: 100;
+        }
     }
 
     .header {
-        height: ${props => props.isTop ? "150px" : "0"};
+        height: 150px;
         line-height: 150px;
         background-color: var(--bg-color-header); 
         color: var(--header-color);
@@ -39,8 +40,12 @@ const StyleWrapper = styled.div<{isTop: boolean;}>`
     }
 
     .main {
-        margin-top:  ${props => props.isTop ? "0" : "80px"};
+        padding-top: 0;
         background: var(--bg-color-main);
+    }
+
+    .fixed + .main, .sticky + .main {
+        padding-top: 64px;
     }
 
     .footer {
@@ -65,9 +70,7 @@ const StyleWrapper = styled.div<{isTop: boolean;}>`
 
 
 function Layout(props) {
-
-    // TODO: move to Nav to avoid randering full page
-    const [isTop, setIsTop] = useState(true);
+    const navRef = useRef<HTMLDivElement>();
 
     useEffect(() => {
         window.onscroll = () => handleOnScroll();
@@ -75,19 +78,19 @@ function Layout(props) {
     }, [])
 
     function handleOnScroll() {
-        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-            setIsTop(false);
+        if (window.scrollY > 150) {
+            navRef.current.classList.add("sticky");
         } else {
-            setIsTop(true);
+            navRef.current.classList.remove("sticky");
         }
     }
         
     return (
-        <StyleWrapper isTop={isTop}>
+        <StyleWrapper>
             <div className="header">
                 <Header />
             </div>
-            <div className="nav">
+            <div className="nav" ref={navRef}>
                 <Nav links={NAV_LINKS} />
             </div>          
             <div className="main">
