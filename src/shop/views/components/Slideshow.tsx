@@ -53,7 +53,7 @@ const StyleWrapper = styled.div`
         text-align: center;
         width: 100%;
         padding: 8px;
-        z-index: 10;
+        z-index: 1;
 
         span {
             cursor: pointer;
