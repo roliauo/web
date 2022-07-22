@@ -1,9 +1,12 @@
-import React, {Fragment, useState} from "react";
-import { Link } from "react-router-dom";
+import React, {Fragment, useRef} from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import {I_NAV_LINKS} from '../../constants';
 import SidebarContainer from "../layout/SidebarContainer";
+import dataService from '../../service/dataService';
+
 interface I_Props {
+    searchProduct: (search: string) => void;
     links: I_NAV_LINKS[];
 }
 
@@ -13,7 +16,7 @@ const StyleWrapper = styled.nav`
     height: inherit;
     padding: 0 0.5rem;
     
-    .link {
+    .link, .btn-search {
         display: flex;
         position: relative;
         background: inherit;
@@ -21,6 +24,7 @@ const StyleWrapper = styled.nav`
         text-decoration: none;
         width: 100px;
         transition: .4s;
+        cursor: pointer;
 
         :last-child::after {
             opacity: 0;
@@ -72,19 +76,17 @@ const StyleWrapper = styled.nav`
  
     .divider {
         display: inline;
-        &:last-child {
-            display: none;
-        }
+        // &:last-child {
+        //     display: none;
+        // }
     }
 
-    .mobile-menu-button {
+    .btn-mobile-menu {
         position: absolute;
         left: -100px;
         padding: 0 1rem;
         font-size: 1.2rem;
-        cursor: pointer;
         transition: left .3s;
-        //display: none;
     }
 
     .mobile-menu {
@@ -111,12 +113,30 @@ const StyleWrapper = styled.nav`
         }
     }
 
+    .dropdown {
+        position: relative;
+    }
+
+    .search-container {
+        position: absolute;      
+        height: 0px;
+        background: bisque;
+        display: flex;
+        z-index: 1;
+        transition: .4s;
+        overflow: hidden;
+    }
+
+    .btn-search.active + .search-container {
+        height: 40px;
+    }
+
     @media (max-width: 767px) {
         // [class*="mobile-"] {
         //     display: block !important;
         // }
 
-        .mobile-menu-button {
+        .btn-mobile-menu {
             left: 0;
         }
 
@@ -139,14 +159,35 @@ const StyleWrapper = styled.nav`
 `
 
 function Nav(props: I_Props) {
-    const [showMobileMenu, setShowMobileMenu] = useState(false);
+    const mobileMenuRef = useRef<HTMLDivElement>(); 
+    const searchRef = useRef<HTMLInputElement>();
     const {links = []} = props;
+    const navigate = useNavigate();
+
+    function showMobileMenu(show: boolean) {
+        if (show){
+            mobileMenuRef.current.classList.add("active");
+        } 
+        else {
+            mobileMenuRef.current.classList.remove("active");
+        }
+    }
+
+    function toggleSearch(e: React.MouseEvent<HTMLElement>) {
+        if (e.currentTarget.classList.contains("active") && searchRef.current.value.length > 0){
+            props.searchProduct(searchRef.current.value);
+            navigate('/products');
+        }        
+        e.currentTarget.classList.toggle("active");
+        
+
+    }
         
     return (
         <StyleWrapper>
-            <div className="mobile-menu-button" onClick={() => setShowMobileMenu(!showMobileMenu)}> &#9776; </div>
-            <div className={ showMobileMenu ? 'mobile-menu active' : 'mobile-menu'}>
-                <div className="btn-close" onClick={() => setShowMobileMenu(false)}>&times;</div>
+            <div className="btn-mobile-menu" onClick={() => showMobileMenu(true)}> &#9776; </div>
+            <div className="mobile-menu" ref={mobileMenuRef}>
+                <div className="btn-close" onClick={() => showMobileMenu(false)}>&times;</div>
                 <SidebarContainer />
             </div>
             {
@@ -162,6 +203,17 @@ function Nav(props: I_Props) {
               
                 )
             }
+            <div className="dropdown">
+                <div className="btn-search" onClick={toggleSearch}>
+                    <i className="material-icons">search</i>
+                    <span data-hover="搜尋" data-base="Search"/>               
+                </div>
+                <div className="search-container">
+                    <input ref={searchRef} type="text" name="search" placeholder="Search" />
+                </div>
+            </div>
+           
+            
         </StyleWrapper>
     )
 }

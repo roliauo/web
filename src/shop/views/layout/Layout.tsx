@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import Nav from '../components/Nav';
+import Nav from '../components/NavContainer';
 import Header from '../components/Header';
 import Footer from "../components/Footer";
 import {NAV_LINKS} from '../../constants';

@@ -12,7 +12,7 @@ export interface I_NAV_LINKS {
 }
 
 export const NAV_LINKS: I_NAV_LINKS[] = [
-    {name: "Search", url:"/search", hover: "搜尋", iconClassName: "material-icons", icon: "search"},
+    // {name: "Search", url:"/search", hover: "搜尋", iconClassName: "material-icons", icon: "search"},
     //{name: "Login", url:"/login", hover: "登入"},
     //{name: "Log out", url:"/shop/logout", hover: "登出"},
     {name: "Member", url:"/member", hover: "會員", iconClassName: "material-icons", icon: "person_outline"},
