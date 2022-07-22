@@ -1,17 +1,26 @@
 import {I_MenuItem} from '../../views/components/CollapsibleMenu';
+import dataService from '../../service/dataService';
 
 // action types
 export const actionTypes = {
     UPDATE_SIDEBAR_MENU: 'UPDATE_SIDEBAR_MENU',
 }
 
+// actions
+const updateSidebarMenu = (menu: I_MenuItem) => ({
+    type: actionTypes.UPDATE_SIDEBAR_MENU,
+    menu
+})
+
 
 // operations
 export const actionOperations = {
-    updateSidebarMenu: (menu: I_MenuItem) => ({
-        type: actionTypes.UPDATE_SIDEBAR_MENU,
-        menu
-    }),
+    getSidebarMenu: () => (dispatch) => {
+        dataService.getSidebarMenu()
+            .then((resData) => {
+                dispatch(updateSidebarMenu(resData));
+            }) 
+    },
 }
 
 // reducer

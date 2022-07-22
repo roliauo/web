@@ -7,8 +7,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    updateSidebarMenu: (menu) => {
-        dispatch(actionOperations.updateSidebarMenu(menu));
+    getSidebarMenu: () => {
+        dispatch(actionOperations.getSidebarMenu());
     }
 })
 

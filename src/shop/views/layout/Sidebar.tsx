@@ -3,10 +3,9 @@ import styled from "styled-components";
 import CollapsibleMenu from "../components/CollapsibleMenu";
 
 import {I_MenuItem} from '../components/CollapsibleMenu';
-import dataService from '../../service/dataService';
 
 interface Props {
-    updateSidebarMenu: (menu: I_MenuItem) => void;
+    getSidebarMenu: () => void;
     menu: I_MenuItem[];
 }
 
@@ -18,10 +17,7 @@ function Sidebar(props: Props) {
 
     useEffect(() => {
         if (props.menu.length == 0) {
-            dataService.getSidebarMenu()
-                .then((resData) => {
-                    props.updateSidebarMenu(resData); 
-                }) 
+            props.getSidebarMenu();
         }
     }, []);
 
