@@ -132,7 +132,7 @@ function Apps() {
                 <a href="./shop" className="btn"> Shop </a> 
             </div>
             <div className="version">
-                version: 20220721
+                version: 20220722-81da35c
             </div>
         </StyleWrapper>
     )
