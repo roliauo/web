@@ -1,13 +1,13 @@
 import React, {Fragment, useRef} from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import {I_NAV_LINKS} from '../../constants';
-import SidebarContainer from "../layout/SidebarContainer";
+import {I_NavLinks} from '../../constants';
+import SidebarContainer from "./SidebarContainer";
 import dataService from '../../service/dataService';
 
 interface I_Props {
     searchProduct: (search: string) => void;
-    links: I_NAV_LINKS[];
+    links: I_NavLinks[];
 }
 
 const StyleWrapper = styled.nav`

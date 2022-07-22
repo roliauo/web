@@ -1,10 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import Nav from '../components/NavContainer';
+import Nav from './NavContainer';
 import Header from '../components/Header';
 import Footer from "../components/Footer";
 import {NAV_LINKS} from '../../constants';
+// import {I_MenuItem} from '../components/CollapsibleMenu';
+// import dataService from '../../service/dataService';
 import '../root.css';
+
+// interface Props {
+//     updateSidebarMenu: (menu: I_MenuItem) => void;
+//     update
+//     menu: I_MenuItem[];
+// }
 
 const StyleWrapper = styled.div`
     width: 100%;
@@ -40,12 +48,12 @@ const StyleWrapper = styled.div`
     }
 
     .main {
-        padding-top: 0;
         background: var(--bg-color-main);
+        padding: 1rem;
     }
 
     .fixed + .main, .sticky + .main {
-        padding-top: 64px;
+        padding-top: 40px;
     }
 
     .footer {
@@ -74,6 +82,11 @@ function Layout(props) {
 
     useEffect(() => {
         window.onscroll = () => handleOnScroll();
+        // dataService.getConfig()
+        //         .then((resData) => {
+        //             props.updateSidebarMenu(resData.category); 
+
+        //         }); 
         return () => window.removeEventListener('scroll', handleOnScroll);
     }, [])
 

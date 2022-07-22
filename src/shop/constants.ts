@@ -3,7 +3,7 @@ export const LOCAL_URL = "http://192.168.50.48:8000/";
 
 export const PATH_HOME = {name: 'Home', url:'/', hover: '首頁'};
 
-export interface I_NAV_LINKS {
+export interface I_NavLinks {
     name: string;
     url: string;
     hover: string;
@@ -11,7 +11,7 @@ export interface I_NAV_LINKS {
     iconClassName?: string;
 }
 
-export const NAV_LINKS: I_NAV_LINKS[] = [
+export const NAV_LINKS: I_NavLinks[] = [
     // {name: "Search", url:"/search", hover: "搜尋", iconClassName: "material-icons", icon: "search"},
     //{name: "Login", url:"/login", hover: "登入"},
     //{name: "Log out", url:"/shop/logout", hover: "登出"},

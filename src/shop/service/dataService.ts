@@ -16,7 +16,7 @@ const dataService = {
         return httpClient.get(`https://dummyjson.com/products/${id}`);
     },
     searchProduct(search: string): Promise<any> {
-        return httpClient.get(`https://dummyjson.com/products/search?q=${search}`);
+        return httpClient.get(`https://dummyjson.com/products/search?q=${search}&limit=30`);
     },
 }
 

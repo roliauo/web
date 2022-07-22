@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Layout from "./layout/Layout";
 import PageHome from './layout/PageHome';
-import PageProducts from './layout/PageProducts';
+import PageProductsContainer from './layout/PageProductsContainer';
 
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
             <Layout>
                 <Routes>                   
                     <Route path='/' element={<PageHome/>} />
-                    <Route path='/products' element={<PageProducts/>} />
+                    <Route path='/products' element={<PageProductsContainer/>} />
                     {/* <Route path='/member' element={<PageMember/>} />
                     <Route path='/wishlist' element={<PageWishList/>} />
                     <Route path='/cart' element={<PageCart/>} /> */}                

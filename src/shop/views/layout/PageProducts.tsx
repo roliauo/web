@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import SidebarContainer from "./SidebarContainer";
+import Card from "../components/Card";
+import { I_ProductItem } from "@shop/state/ducks/Product"; 
 
 const StyleWrapperTwoColumns = styled.div`
     display: flex;
@@ -25,20 +27,48 @@ const StyleWrapperTwoColumns = styled.div`
     }
 `;
 
+function PageItem({item: I_ProductItem}) {
+    return (
+        <div>
 
-function View() {
+        </div>
+    )
+}
 
-    return(
+interface Props {
+    getProductList: () => void;
+    list: I_ProductItem[];
+    item: I_ProductItem;
+}
+
+function PageProducts(props: Props) {
+    const [showItem, setShowItem] = useState(false);
+
+    useEffect(() => {
+        props.getProductList();
+    }, [])
+    
+    return (
         <StyleWrapperTwoColumns>
             <aside>
                 <SidebarContainer />
             </aside>
             <main>
-                Page - Products
+                <div>
+                    data from: https://dummyjson.com/docs/products
+                </div>
+                {
+                    showItem ?
+                    <PageItem item={props.item}/>
+                    :
+                    props.list.map((m) => 
+                        <Card key={m.id} title={m.title} info={m.description} imgSrc={m.images[0]}/>
+                    )
+                }
             </main>
         </StyleWrapperTwoColumns>
        
     )
 }
 
-export default View;
+export default PageProducts;

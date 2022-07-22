@@ -40,7 +40,26 @@ export const actionOperations = {
 }
 
 // reducer
-const initialState = {
+export interface I_Product {
+    list: I_ProductItem[];
+    item: I_ProductItem | {};
+}
+
+export interface I_ProductItem {
+    id: number;
+    title: string;
+    description: string;
+    price: number;
+    discountPercentage: number;
+    rating: number;
+    stock: number;
+    brand: string;
+    category: string;
+    thumbnail: string;
+    images: string[];
+  }
+
+const initialState: I_Product = {
     list: [],
     item: {},
 }
