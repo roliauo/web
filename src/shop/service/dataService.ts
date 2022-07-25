@@ -8,6 +8,9 @@ const dataService = {
     getSidebarMenu(): Promise<any> {
         return httpClient.get('data/shop/category.json');
     },
+    getCategories(): Promise<string[]> {
+        return httpClient.get('https://dummyjson.com/products/categories');
+    },
     getProductList(): Promise<any> {
         //return httpClient.get('data/shop/product.json')
         return httpClient.get('https://dummyjson.com/products');
@@ -17,7 +20,10 @@ const dataService = {
         return httpClient.get(`https://dummyjson.com/products/${id}`);
     },
     searchProduct(search: string): Promise<any> {
-        return httpClient.get(`https://dummyjson.com/products/search?q=${search}&limit=30`);
+        return httpClient.get(`https://dummyjson.com/products/search?q=${search}`);
+    },
+    getProductListByCategory(category: string|number) : Promise<any> {
+        return httpClient.get(`https://dummyjson.com/products/category/${category}`);
     },
 }
 

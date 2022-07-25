@@ -37,6 +37,21 @@ export const actionOperations = {
                 dispatch(updateProductList(resData.products));
             })
     },
+    getProductListByCategory: (category: string|number) => (dispatch, state) => {
+        if (category === "all") {
+            actionOperations.getProductList();
+        } else {
+            dataService.getProductListByCategory(category)
+            .then((resData) => {
+                dispatch(updateProductList(resData.products));
+            })
+        }
+
+    },
+    // getCategories: () => (dispatch) => {
+    //     dataService.getCategories()
+    //         .then((resDate) => )
+    // }
 }
 
 // reducer

@@ -1,10 +1,10 @@
-import React, {useState} from "react";
+import React from "react";
 import styled from "styled-components";
 
 const StyledWrapper = styled.section<{
-    color?: string; 
-    background?: string; 
-    activeColor?: string; 
+    color?: string;
+    background?: string;
+    activeColor?: string;
     activeBackground?: string;
     contentColor?: string;
     contentBackground?: string;
@@ -23,7 +23,7 @@ const StyledWrapper = styled.section<{
             color:  ${props => props.activeColor || "cornflowerblue" };
         }
     }
-        
+
     .content {
         max-height: 0px;
         overflow: hidden;
@@ -65,18 +65,15 @@ export interface I_MenuItem {
 
 interface Props {
     menuItems: I_MenuItem;
+    handleClickItem: (item: I_MenuItem) => void;
 }
 
 export default function CollapsibleMenu(props: Props) {
-    const {menuItems} = props;
+    const {menuItems, handleClickItem} = props;
 
     function toggleActive(event: React.MouseEvent<HTMLElement>) {
         if (menuItems.children.length == 0) return;
         event.currentTarget.classList.toggle("active");
-    }
-
-    function handleClickItem() {
-        
     }
 
     return (
@@ -86,21 +83,21 @@ export default function CollapsibleMenu(props: Props) {
                 <>
                     <div className="collapsible" onClick={toggleActive}>
                         {menuItems.name}
-                    </div>          
+                    </div>
                     <div className="content">
                         <ul>
-                            {menuItems.children.map((m) => 
-                                <li key={m.id} onClick={() => handleClickItem}>
+                            {menuItems.children.map((m) =>
+                                <li key={m.id} onClick={() => handleClickItem(m)}>
                                     {m.name}
                                 </li>
                             )}
-                        </ul>      
-                    </div>                
-                </>              
+                        </ul>
+                    </div>
+                </>
                 :
-                <div className="uncollapsible" onClick={handleClickItem}>
+                <div className="uncollapsible" onClick={() => handleClickItem(menuItems)}>
                     {menuItems.name}
-                </div>          
+                </div>
             }
         </StyledWrapper>
     )
