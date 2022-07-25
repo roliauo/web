@@ -22,20 +22,20 @@ export const actionOperations = {
     getProductList: () => (dispatch) => {
         dataService.getProductList()
             .then((resData) => {
-                dispatch(updateProductList(resData.products)); 
-            }) 
+                dispatch(updateProductList(resData.products));
+            })
     },
     getProductById: (id: number) => (dispatch) => {
         dataService.getProductById(id)
             .then((resData) => {
-                dispatch(updateProductDetailPage(resData)); 
-            }) 
+                dispatch(updateProductDetailPage(resData));
+            })
     },
     searchProduct: (search: string) => (dispatch) => {
         dataService.searchProduct(search)
-            .then((resData) => {               
-                dispatch(updateProductList(resData.products)); 
-            }) 
+            .then((resData) => {
+                dispatch(updateProductList(resData.products));
+            })
     },
 }
 
@@ -75,7 +75,7 @@ const setProduct = (state = initialState, action) => {
                 ...state,
                 item: action.item
             }
-        default: 
+        default:
             return state;
     }
 }

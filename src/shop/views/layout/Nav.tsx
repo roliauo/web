@@ -1,9 +1,8 @@
 import React, {Fragment, useRef} from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import {I_NavLinks} from '../../constants';
 import SidebarContainer from "./SidebarContainer";
-import dataService from '../../service/dataService';
 
 interface I_Props {
     searchProduct: (search: string) => void;
@@ -15,7 +14,7 @@ const StyleWrapper = styled.nav`
     justify-content: flex-end;
     height: inherit;
     padding: 0 0.5rem;
-    
+
     .link, .btn-search {
         display: flex;
         position: relative;
@@ -43,7 +42,7 @@ const StyleWrapper = styled.nav`
             right: 0;
             margin-top: -1rem;
             opacity: 0;
-            width: calc(100% - 1.5rem); 
+            width: calc(100% - 1.5rem);
             transition: .3s;
             //background: inherit;
         }
@@ -73,7 +72,7 @@ const StyleWrapper = styled.nav`
             margin-left: 8px;
         }
     }
- 
+
     .divider {
         display: inline;
         // &:last-child {
@@ -117,8 +116,9 @@ const StyleWrapper = styled.nav`
         position: relative;
     }
 
-    .search-container {
-        position: absolute;      
+    .search-content {
+        position: absolute;
+        right: 0;
         height: 0px;
         background: bisque;
         display: flex;
@@ -127,7 +127,7 @@ const StyleWrapper = styled.nav`
         overflow: hidden;
     }
 
-    .btn-search.active + .search-container {
+    .btn-search.active + .search-content {
         height: 40px;
     }
 
@@ -159,7 +159,7 @@ const StyleWrapper = styled.nav`
 `
 
 function Nav(props: I_Props) {
-    const mobileMenuRef = useRef<HTMLDivElement>(); 
+    const mobileMenuRef = useRef<HTMLDivElement>();
     const searchRef = useRef<HTMLInputElement>();
     const {links = []} = props;
     const navigate = useNavigate();
@@ -167,7 +167,7 @@ function Nav(props: I_Props) {
     function showMobileMenu(show: boolean) {
         if (show){
             mobileMenuRef.current.classList.add("active");
-        } 
+        }
         else {
             mobileMenuRef.current.classList.remove("active");
         }
@@ -177,12 +177,12 @@ function Nav(props: I_Props) {
         if (e.currentTarget.classList.contains("active") && searchRef.current.value.length > 0){
             props.searchProduct(searchRef.current.value);
             navigate('/products');
-        }        
+        }
         e.currentTarget.classList.toggle("active");
-        
+
 
     }
-        
+
     return (
         <StyleWrapper>
             <div className="btn-mobile-menu" onClick={() => showMobileMenu(true)}> &#9776; </div>
@@ -192,28 +192,28 @@ function Nav(props: I_Props) {
             </div>
             {
                 links.length > 0 &&
-                links.map((m, i) => 
+                links.map((m, i) =>
                     <Fragment key={i}>
-                        <Link className="link" to={m.url}> 
+                        <Link className="link" to={m.url}>
                             <i className={m.iconClassName}>{m.icon}</i>
                             <span data-hover={m.hover} data-base={m.name}/>
                         </Link>
                         <span className="divider"> / </span>
                     </Fragment>
-              
+
                 )
             }
             <div className="dropdown">
                 <div className="btn-search" onClick={toggleSearch}>
                     <i className="material-icons">search</i>
-                    <span data-hover="搜尋" data-base="Search"/>               
+                    <span data-hover="搜尋" data-base="Search"/>
                 </div>
-                <div className="search-container">
+                <div className="search-content">
                     <input ref={searchRef} type="text" name="search" placeholder="Search" />
                 </div>
             </div>
-           
-            
+
+
         </StyleWrapper>
     )
 }

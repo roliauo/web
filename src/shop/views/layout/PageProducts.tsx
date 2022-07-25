@@ -11,12 +11,12 @@ const StyleWrapperTwoColumns = styled.div`
     min-height: 100vh;
 
     > aside {
-        flex: 24%;
+        flex: 14%;
         overflow: hidden;
     }
 
     > main {
-        flex: 76%;
+        flex: 86%;
     }
 
     /* Phone */
@@ -61,9 +61,14 @@ function PageProducts(props: Props) {
                     showItem ?
                     <PageItem item={props.item}/>
                     :
-                    props.list.map((m) => 
-                        <Card key={m.id} title={m.title} info={m.description} imgSrc={m.images[0]}/>
-                    )
+                    <div className="flex-center">
+                        {
+                            props.list.map((m) => 
+                                <Card key={m.id} title={m.title} info={m.description} imgSrc={m.images[0]}/>
+                            )
+                        }
+                    </div>
+                    
                 }
             </main>
         </StyleWrapperTwoColumns>

@@ -1,6 +1,5 @@
 import React, {Fragment, useState} from "react";
 import styled from "styled-components";
-import InputBox from './common/InputBox';
 
 /*<InputBox id='num' value={input}/>*/
 
@@ -19,11 +18,11 @@ function Calculator () {
 
     return(
         <Fragment>
-            <input 
-                type='text' 
+            <input
+                type='text'
                 name='num'
                 value={input}
-                pattern='[0-9]+' 
+                pattern='[0-9]+'
                 onChange={(e) => handleChange(e)}
                 //className={props.className}
             />
@@ -34,9 +33,5 @@ function Calculator () {
 
     );
 }
-
-const StyledComponent = styled(Calculator)`
-
-`
 
 export default Calculator;

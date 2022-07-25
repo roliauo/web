@@ -8,10 +8,10 @@ import { SLIDESHOWS_BANNER_URL } from "../../constants";
 const StyleWrapper = styled.div``
 
 export default function View() {
-    var testArr = Array.from(Array(20).keys());
+    const testArr = Array.from(Array(20).keys());
 
     return (
-        <>
+        <StyleWrapper>
             <Slideshow slideshows={SLIDESHOWS_BANNER_URL}/>
 
             <div className="flex-center">
@@ -21,6 +21,6 @@ export default function View() {
                 }
                 <Card title="Test" info="info..."/>
             </div>            
-        </>
+        </StyleWrapper>
     )  
 }

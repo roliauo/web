@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import Nav from './NavContainer';
 import Header from '../components/Header';
@@ -17,7 +17,7 @@ import '../root.css';
 const StyleWrapper = styled.div`
     width: 100%;
     min-width: 300px;
-    
+
     .fixed {
         position: fixed;
         width: 100%;
@@ -28,8 +28,8 @@ const StyleWrapper = styled.div`
     .nav {
         height: 2rem;
         line-height: 2rem;
-        background: var(--nav-bg); 
-        color: var(--nav-color); 
+        background: var(--nav-bg);
+        color: var(--nav-color);
 
         &.sticky {
             position: sticky;
@@ -42,9 +42,9 @@ const StyleWrapper = styled.div`
     .header {
         height: 150px;
         line-height: 150px;
-        background-color: var(--bg-color-header); 
+        background-color: var(--bg-color-header);
         color: var(--header-color);
-        transition: 0.3s;    
+        transition: 0.3s;
     }
 
     .main {
@@ -57,7 +57,7 @@ const StyleWrapper = styled.div`
     }
 
     .footer {
-        
+
     }
 
     /* Phone */
@@ -84,9 +84,9 @@ function Layout(props) {
         window.onscroll = () => handleOnScroll();
         // dataService.getConfig()
         //         .then((resData) => {
-        //             props.updateSidebarMenu(resData.category); 
+        //             props.updateSidebarMenu(resData.category);
 
-        //         }); 
+        //         });
         return () => window.removeEventListener('scroll', handleOnScroll);
     }, [])
 
@@ -97,7 +97,7 @@ function Layout(props) {
             navRef.current.classList.remove("sticky");
         }
     }
-        
+
     return (
         <StyleWrapper>
             <div className="header">
@@ -105,7 +105,7 @@ function Layout(props) {
             </div>
             <div className="nav" ref={navRef}>
                 <Nav links={NAV_LINKS} />
-            </div>          
+            </div>
             <div className="main">
                 {props.children}
             </div>
@@ -114,7 +114,7 @@ function Layout(props) {
                 <Footer/>
             </div>
         </StyleWrapper>
-    )  
+    )
 }
 
 
