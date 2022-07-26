@@ -7,9 +7,12 @@ export const actionTypes = {
 }
 
 // actions
-const updateProductList = (list) => ({
+const updateProductList = (data) => ({
     type: actionTypes.UPDATE_PRODUCT_LIST,
-    list
+    list: data.products,
+    total: data.total,
+    skip: data.skip,
+    //limit: data.limit,
 })
 
 const updateProductDetailPage = (item) => ({
@@ -19,10 +22,11 @@ const updateProductDetailPage = (item) => ({
 
 // operations
 export const actionOperations = {
-    getProductList: () => (dispatch) => {
-        dataService.getProductList()
+    getProductList: (skip?: number) => (dispatch) => {
+        const params = `?limit=30&skip=${skip || 0}`;
+        dataService.getProductList(params)
             .then((resData) => {
-                dispatch(updateProductList(resData.products));
+                dispatch(updateProductList(resData));
             })
     },
     getProductById: (id: number) => (dispatch) => {
@@ -34,16 +38,17 @@ export const actionOperations = {
     searchProduct: (search: string) => (dispatch) => {
         dataService.searchProduct(search)
             .then((resData) => {
-                dispatch(updateProductList(resData.products));
+                dispatch(updateProductList(resData));
             })
     },
-    getProductListByCategory: (category: string|number) => (dispatch, state) => {
+    getProductListByCategory: (category: string|number, skip?: number) => (dispatch) => {
+        const params = `?limit=30&skip=${skip || 0}`;
         if (category === "all") {
             actionOperations.getProductList();
         } else {
-            dataService.getProductListByCategory(category)
+            dataService.getProductListByCategory(category, params)
             .then((resData) => {
-                dispatch(updateProductList(resData.products));
+                dispatch(updateProductList(resData));
             })
         }
 
@@ -58,6 +63,9 @@ export const actionOperations = {
 export interface I_Product {
     list: I_ProductItem[];
     item: I_ProductItem | {};
+    total: number;
+    skip: number;
+    limit: number;
 }
 
 export interface I_ProductItem {
@@ -77,13 +85,19 @@ export interface I_ProductItem {
 const initialState: I_Product = {
     list: [],
     item: {},
+    total: 0,
+    skip: 0,
+    limit: 30,
 }
 const setProduct = (state = initialState, action) => {
     switch(action.type) {
         case actionTypes.UPDATE_PRODUCT_LIST:
             return {
                 ...state,
-                list: action.list
+                list: action.list,
+                total: action.total,
+                skip: action.skip,
+                //limit: action.limit,
             }
         case actionTypes.UPDATE_PRODUCT_DETAIL_PAGE:
             return {

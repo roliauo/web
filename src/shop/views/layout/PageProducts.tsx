@@ -2,7 +2,8 @@ import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import SidebarContainer from "./SidebarContainer";
 import Card from "../components/Card";
-import { I_ProductItem } from "@shop/state/ducks/Product"; 
+import Pagination from "../components/Pagination";
+import { I_ProductItem } from "@shop/state/ducks/Product";
 
 const StyleWrapperTwoColumns = styled.div`
     display: flex;
@@ -36,9 +37,12 @@ function PageItem({item: I_ProductItem}) {
 }
 
 interface Props {
-    getProductList: () => void;
+    getProductList: (skip?: number) => void;
     list: I_ProductItem[];
     item: I_ProductItem;
+    total: number;
+    skip: number;
+    limit: number;
 }
 
 function PageProducts(props: Props) {
@@ -47,7 +51,11 @@ function PageProducts(props: Props) {
     useEffect(() => {
         props.getProductList();
     }, [])
-    
+
+    function handleChangePages(page: number) {
+        props.getProductList((page - 1) * props.limit);
+    }
+
     return (
         <StyleWrapperTwoColumns>
             <aside>
@@ -61,18 +69,20 @@ function PageProducts(props: Props) {
                     showItem ?
                     <PageItem item={props.item}/>
                     :
-                    <div className="flex-center">
-                        {
-                            props.list.map((m) => 
-                                <Card key={m.id} title={m.title} info={m.description} imgSrc={m.images[0]}/>
-                            )
-                        }
-                    </div>
-                    
+                    <>
+                        <div className="flex-center">
+                            {
+                                props.list.map((m) =>
+                                    <Card key={m.id} title={m.title} info={m.description} imgSrc={m.images[0]}/>
+                                )
+                            }
+                        </div>
+                        <Pagination totalPages={Math.ceil(props.total/props.limit)} handleChangePages={handleChangePages}/>
+                    </>
                 }
             </main>
         </StyleWrapperTwoColumns>
-       
+
     )
 }
 
