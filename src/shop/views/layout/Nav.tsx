@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import {I_NavLinks} from '../../constants';
 import SidebarContainer from "./SidebarContainer";
+import Dropdown from '../components/Dropdown';
+import Button from '../components/Button';
 
 interface I_Props {
     searchProduct: (search: string) => void;
@@ -14,64 +16,6 @@ const StyleWrapper = styled.nav`
     justify-content: flex-end;
     height: inherit;
     padding: 0 0.5rem;
-
-    .link, .btn-search {
-        display: flex;
-        position: relative;
-        background: inherit;
-        color: inherit;
-        text-decoration: none;
-        width: 100px;
-        transition: .4s;
-        cursor: pointer;
-
-        :last-child::after {
-            opacity: 0;
-        }
-
-        >span {
-            display: inline-block;
-            width: inherit;
-        }
-
-        >span:before, >span:after {
-            content: attr(data-hover);
-            position: absolute;
-            text-align: center;
-            top: 0;
-            right: 0;
-            margin-top: -1rem;
-            opacity: 0;
-            width: calc(100% - 1.5rem);
-            transition: .3s;
-            //background: inherit;
-        }
-
-        >span:before {
-            content: attr(data-base);
-            opacity: 1;
-            margin-top: 0;
-        }
-
-        :hover {
-            >span:after {
-                opacity: 1;
-                margin-top: 1px;
-                font-size: 0.92rem;
-                // color: #e0d5ef;
-            }
-
-            >span:before {
-                opacity: 0;
-            }
-        }
-
-        i {
-            line-height: inherit;
-            font-size: 1rem;
-            margin-left: 8px;
-        }
-    }
 
     .divider {
         display: inline;
@@ -110,25 +54,6 @@ const StyleWrapper = styled.nav`
             right: 0.5rem;
             font-size: 2rem;
         }
-    }
-
-    .dropdown {
-        position: relative;
-    }
-
-    .search-content {
-        position: absolute;
-        right: 0;
-        height: 0px;
-        background: bisque;
-        display: flex;
-        z-index: 1;
-        transition: .4s;
-        overflow: hidden;
-    }
-
-    .btn-search.active + .search-content {
-        height: 40px;
     }
 
     @media (max-width: 767px) {
@@ -179,8 +104,6 @@ function Nav(props: I_Props) {
             navigate('/products');
         }
         e.currentTarget.classList.toggle("active");
-
-
     }
 
     return (
@@ -194,24 +117,22 @@ function Nav(props: I_Props) {
                 links.length > 0 &&
                 links.map((m, i) =>
                     <Fragment key={i}>
-                        <Link className="link" to={m.url}>
+                        <Button name={m.name} url={m.url} hover={m.hover} iconClassName={m.iconClassName} icon={m.icon} />
+                        {/* <Link className="link" to={m.url}>
                             <i className={m.iconClassName}>{m.icon}</i>
                             <span data-hover={m.hover} data-base={m.name}/>
-                        </Link>
+                        </Link> */}
                         <span className="divider"> / </span>
                     </Fragment>
 
                 )
             }
-            <div className="dropdown">
-                <div className="btn-search" onClick={toggleSearch}>
-                    <i className="material-icons">search</i>
-                    <span data-hover="搜尋" data-base="Search"/>
-                </div>
-                <div className="search-content">
-                    <input ref={searchRef} type="text" name="search" placeholder="Search" />
-                </div>
-            </div>
+
+            <Dropdown button={
+               <Button name="Search" hover="搜尋" iconClassName="material-icons" icon="search" handleClick={toggleSearch}/>
+            }>
+                <input ref={searchRef} type="text" name="search" placeholder="Search" />
+            </Dropdown>
 
 
         </StyleWrapper>
