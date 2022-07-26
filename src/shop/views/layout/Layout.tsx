@@ -50,6 +50,7 @@ const StyleWrapper = styled.div`
     .main {
         background: var(--bg-color-main);
         padding: 1rem;
+        min-height: calc(100vh - 150px - 32px - 17px); // header: 150px, nav: 32px, footer: 17px
     }
 
     .fixed + .main, .sticky + .main {

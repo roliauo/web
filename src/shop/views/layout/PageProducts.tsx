@@ -18,6 +18,10 @@ const StyleWrapperTwoColumns = styled.div`
 
     > main {
         flex: 86%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        // justify-content: space-between;
     }
 
     /* Phone */
