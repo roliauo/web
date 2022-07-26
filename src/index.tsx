@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import {createRoot} from "react-dom";
+import {createRoot} from "react-dom/client";
 import './init.css';
 
 const StyleWrapper = styled.div`
@@ -99,7 +99,7 @@ const StyleWrapper = styled.div`
         from { right: 100%; }
         to { right: 0%; }
     }
-    
+
     @keyframes show {
         from { opacity: 0; }
         to { opacity: 1; }
@@ -116,11 +116,12 @@ const StyleWrapper = styled.div`
             background-position: 0% 50%;
         }
     }
-    
-    
+
+
 `
 
 function Apps() {
+    const version =  process.env.NODE_ENV == "production" ? process.env.APP_VERSION : process.env.BUILD_DATE;
 
     return (
         <StyleWrapper>
@@ -129,10 +130,10 @@ function Apps() {
             </div>
             <div className="links-container">
                 <a href="./app_redux" className="btn"> Apps </a>
-                <a href="./shop" className="btn"> Shop </a> 
+                <a href="./shop" className="btn"> Shop </a>
             </div>
             <div className="version">
-                version: 20220722-81da35c
+                version: {version}
             </div>
         </StyleWrapper>
     )
