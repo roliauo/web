@@ -6,12 +6,13 @@ interface Props {
     info: string;
     imgSrc?: string;
 }
-const StyleWrapper = styled.div`   
+const StyleWrapper = styled.div`
     display: inline-flex;
     width: 240px;
     height: 312px;
     background: #cecece;
     margin: 1rem;
+    overflow: hidden;
 
     img {
         width: inherit;
@@ -35,11 +36,13 @@ const StyleWrapper = styled.div`
         padding: 8px;
         transition: .4s;
         opacity: 0;
+        visibility: hidden;
     }
 
     .link:hover .info {
         height: 80px;
         opacity: 1;
+        visibility: visible;
     }
 `
 
@@ -53,7 +56,7 @@ export default function Card(props: Props) {
                     <div className="title">{title}</div>
                     <span>{info}</span>
                 </div>
-            </a>           
+            </a>
         </StyleWrapper>
     )
 }
