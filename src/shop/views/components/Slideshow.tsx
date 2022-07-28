@@ -23,19 +23,20 @@ const StyleWrapper = styled.div`
         img {
             max-height: 100%;
             max-width: 100%;
+            min-width: 400px;
             margin: 0 auto;
             display: block;
         }
 
         &.active {
-            visibility: visible;           
+            visibility: visible;
             overflow: hidden;
             opacity: 1;
             animation: slide-in 0.4s 1;
         }
-    
-    } 
-    
+
+    }
+
     @keyframes slide-in {
         from { left: 100%; }
         to { left: 0%; }
@@ -46,8 +47,8 @@ const StyleWrapper = styled.div`
         99% { left: -100%; opacity: 1;}
         100% { left: -100%; opacity: 0;}
     }
-   
-    .pagination {        
+
+    .pagination {
         position: absolute;
         bottom: 0;
         text-align: center;
@@ -108,16 +109,16 @@ export default function Slideshow (props: Props) {
                     </div>
                 )
             }
-           
+
             <div className="pagination">
                 {
-                    slideshows.map((m, i) => 
-                        <span key={i} 
+                    slideshows.map((m, i) =>
+                        <span key={i}
                             onClick={() => setSlideIndex(i)}
                             className={slideIndex == i ? "active" : ""}
                         ></span>
                     )
-                }                
+                }
             </div>
         </StyleWrapper>
     )

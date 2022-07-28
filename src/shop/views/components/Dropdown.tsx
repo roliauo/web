@@ -18,8 +18,7 @@ const StyleWrapper = styled.div`
     .content {
         position: absolute;
         left: 0;
-        background: #cecece;
-        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        // box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
         min-width: 120px;
         z-index: 1;
         max-height: 0;

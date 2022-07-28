@@ -34,7 +34,7 @@ li {
     padding: 0.2rem 0;
 }
 
-button, input, optgroup, select, textarea {
+button {
     max-width: 100%;
     margin: 0;
     font-family: inherit;
@@ -43,6 +43,18 @@ button, input, optgroup, select, textarea {
     outline: 0;
     border-radius: 0;
     border: none;
+    cursor: pointer;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    /* resize: vertical; */
 }
 
 

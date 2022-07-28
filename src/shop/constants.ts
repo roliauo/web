@@ -11,6 +11,15 @@ export interface I_NavLinks {
     iconClassName?: string;
 }
 
+export const URL = {
+    login: "/login",
+    logout: "/logout",
+    member: "/member",
+    products: "/products",
+    wishlist: "/wishlist",
+    cart: "/cart"
+}
+
 export const NAV_LINKS: I_NavLinks[] = [
     // {name: "Search", url:"/search", hover: "搜尋", iconClassName: "material-icons", icon: "search"},
     //{name: "Login", url:"/login", hover: "登入"},

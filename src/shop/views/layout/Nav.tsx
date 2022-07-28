@@ -5,6 +5,7 @@ import {I_NavLinks} from '../../constants';
 import SidebarContainer from "./SidebarContainer";
 import Dropdown from '../components/Dropdown';
 import Button from '../components/Button';
+import { URL } from "@shop/constants";
 
 interface I_Props {
     searchProduct: (search: string) => void;
@@ -101,7 +102,7 @@ function Nav(props: I_Props) {
     function toggleSearch(e: React.MouseEvent<HTMLElement>) {
         if (e.currentTarget.classList.contains("active") && searchRef.current.value.length > 0){
             props.searchProduct(searchRef.current.value);
-            navigate('/products');
+            navigate(URL.products);
         }
         e.currentTarget.classList.toggle("active");
     }

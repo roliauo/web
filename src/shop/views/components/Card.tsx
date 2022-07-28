@@ -14,6 +14,21 @@ const StyleWrapper = styled.div`
     margin: 1rem;
     overflow: hidden;
 
+    .aspect-ratio {
+        // background-color: red;
+        width: 100%;
+        padding-top: 75%; /* Aspect Ratio */
+        position: relative;
+    }
+
+    .aspect-ratio-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+
     img {
         width: inherit;
         height: inherit;
