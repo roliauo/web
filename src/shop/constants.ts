@@ -18,13 +18,14 @@ export interface I_NavLinks {
 }
 
 export const URL = {
+    home: "/",
     login: "/login",
     //logout: "/logout",
     member: "/member",
     products: "/products",
     wishlist: "/wishlist",
     cart: "/cart",
-    home: "/",
+    privacy: "/privacy",
 }
 
 export const NAV_LINKS: I_NavLinks[] = [
