@@ -1,8 +1,8 @@
 import React, {Fragment, useRef} from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import {I_NavLinks} from '../../constants';
-import SidebarContainer from "./SidebarContainer";
+import SidebarContainer from "./Sidebar";
 import Dropdown from '../components/Dropdown';
 import Button from '../components/Button';
 import { URL } from "@shop/constants";
@@ -133,7 +133,7 @@ function Nav(props: I_Props) {
             </div>
             {
                 userID !== undefined &&
-                <Button name="Log out" hover="登出" handleClick={logout} />
+                <Button name="Log out" hover="登出" handleClick={handleLogout} />
 
             }
             {

@@ -1,9 +1,12 @@
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
-import SidebarContainer from "./SidebarContainer";
+import SidebarContainer from "./Sidebar";
 import Card from "../components/Card";
 import Pagination from "../components/Pagination";
 import { I_ProductItem } from "@shop/state/ducks/Product";
+
+import { connect } from "react-redux";
+import {actionOperations} from '@shop/state/ducks/Product';
 
 const StyleWrapperTwoColumns = styled.div`
     display: flex;
@@ -90,4 +93,20 @@ function PageProducts(props: Props) {
     )
 }
 
-export default PageProducts;
+const mapStateToProps = (state) => ({
+    list: state.setProduct.list,
+    item: state.setProduct.item,
+    total: state.setProduct.total,
+    skip: state.setProduct.skip,
+    limit: state.setProduct.limit,
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    getProductList: (skip?: number) => {
+        dispatch(actionOperations.getProductList(skip));
+    }
+})
+
+const PageProductsContainer = connect(mapStateToProps, mapDispatchToProps)(PageProducts);
+
+export default PageProductsContainer;
