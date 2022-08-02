@@ -1,5 +1,29 @@
 import authService from "@shop/service/authService";
 
+interface I_User {
+    "id": number;
+    "username": string;
+    "email": string;
+    "firstName": string;
+    "lastName": string;
+    "gender": string;
+    "image": string;
+    "token": string;
+}
+
+interface I_FacebookUser {
+    accessToken: string;
+    data_access_expiration_time: number;
+    email: string;
+    expiresIn: number;
+    graphDomain: string;
+    id: string;
+    name: string;
+    picture: any;
+    signedRequest: string;
+    userID: string;
+}
+
 const actionTypes = {
     SET_USER: 'SET_USER',
     LOGOUT: 'LOGOUT'
@@ -29,6 +53,9 @@ export const actionOperations = {
                 console.log("error: " + err);
             })
     },
+    facebookLogin: (user: I_FacebookUser) => (dispatch) => {
+        dispatch(_setUser(user));
+    },
     logout: (id) => (dispatch) => {
         dispatch(_logout());
         // authService.logout({id})
@@ -38,16 +65,7 @@ export const actionOperations = {
     }
 }
 
-interface I_User {
-    "id": number;
-    "username": string;
-    "email": string;
-    "firstName": string;
-    "lastName": string;
-    "gender": string;
-    "image": string;
-    "token": string;
-}
+
 
 interface I_State {
     user: I_User;

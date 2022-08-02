@@ -71,6 +71,7 @@ const StyleWrapper = styled.div`
 
 interface Props {
     login: (username:string, password: string, callback?) => void;
+    facebookLogin: (user) => void;
     loggedIn: boolean;
 }
 
@@ -125,9 +126,10 @@ function Login(props: Props) {
         );
     }
 
-    const responseFacebook = (response) => {
+    function responseFacebook(response) {
         console.log(response);
-      }
+        props.facebookLogin(response);
+    }
 
     return (
         <StyleWrapper>
@@ -189,6 +191,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     login: (username: string, password: string, callback?) => {
         dispatch(actionOperations.login(username, password, callback));
+    },
+    facebookLogin: (user) => {
+        dispatch(actionOperations.facebookLogin(user));
     }
 })
 
