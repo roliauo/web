@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
-import { URL, NODE_ENV } from "@shop/constants";
+import { URL, NODE_ENV, FACRBOOK_APPID } from "@shop/constants";
+import FacebookLogin from "react-facebook-login";
 
 const StyleWrapper = styled.div`
     display: flex;
@@ -24,6 +25,8 @@ const StyleWrapper = styled.div`
     }
 
     .btn-tab {
+        display: inline-block;
+        margin-right: 1.2rem;
         background: none;
         color: #ccc;
         font-size: 1.2rem;
@@ -34,6 +37,24 @@ const StyleWrapper = styled.div`
             color: #000;
             font-size: 2rem;
         }
+    }
+
+    .btn-fb {
+        background-color: #4c69ba;
+        color: #fff;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        border: 1px solid #4c69ba;
+
+        i {
+            margin-right: 8px;
+        }
+    }
+
+    .buttons {
+        margin: 2rem 0;
+        display: flex;
+        justify-content: space-evenly;
     }
 
     .content {
@@ -104,12 +125,16 @@ function Login(props: Props) {
         );
     }
 
+    const responseFacebook = (response) => {
+        console.log(response);
+      }
+
     return (
         <StyleWrapper>
             <div className="container">
                 <div className="tabs">
-                    <button id={_CONSTANT.login} className={activeTab === _CONSTANT.login ? "btn-tab active" : "btn-tab"} onClick={switchTab}>LOG IN</button>
-                    <button id={_CONSTANT.signup} className={activeTab === _CONSTANT.signup ? "btn-tab active" : "btn-tab"} onClick={switchTab}>SIGN UP</button>
+                    <div id={_CONSTANT.login} className={activeTab === _CONSTANT.login ? "btn-tab active" : "btn-tab"} onClick={switchTab}>LOG IN</div>
+                    <div id={_CONSTANT.signup} className={activeTab === _CONSTANT.signup ? "btn-tab active" : "btn-tab"} onClick={switchTab}>SIGN UP</div>
                 </div>
 
                 <div className="content">
@@ -120,9 +145,19 @@ function Login(props: Props) {
                             <input type="text" name="username" placeholder="帳號 (E-Mail)" ref={el => inputRef.current.username = el} />
                             <input type="password" name="password" placeholder="密碼" ref={el => inputRef.current.password= el}/>
 
-                            <button> 登入 LOGIN </button>
+                            <div className="buttons">
+                                <button> 登入 LOGIN </button>
+                                <FacebookLogin
+                                    appId={FACRBOOK_APPID}
+                                    textButton="Login"
+                                    autoLoad={true}
+                                    fields="name,email,picture"
+                                    callback={responseFacebook}
+                                    cssClass="btn-fb"
+                                    icon="fa-facebook"
+                                />
+                            </div>
 
-                            <div> Facebook Login </div>
                         </form>
                         :
                         <form className="content-signup"  onSubmit={handleSubmit} method="post">
@@ -131,7 +166,9 @@ function Login(props: Props) {
                             <input type="password" name="confirmPwd" placeholder="密碼確認 Confirm Password" onChange={confirmPassword}/>
                             <input type="date" name="birthday" placeholder="生日" ref={el => inputRef.current.birthday= el}/>
 
-                            <button > 註冊 Sign up </button>
+                            <div className="buttons">
+                                <button> 註冊 Sign up </button>
+                            </div>
                         </form>
                     }
 

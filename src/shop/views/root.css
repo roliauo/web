@@ -41,8 +41,6 @@ button {
     font-size: .875rem;
     line-height: inherit;
     outline: 0;
-    border-radius: 0;
-    border: none;
     cursor: pointer;
 }
 

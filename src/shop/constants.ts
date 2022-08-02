@@ -1,5 +1,6 @@
 export const BASE_URL = "https://roliauo.github.io/web/";
 export const LOCAL_URL = "http://192.168.50.48:8000/";
+export const FACRBOOK_APPID = "1284323368974632";
 
 export const PATH_HOME = {name: 'Home', url:'/', hover: '首頁'};
 

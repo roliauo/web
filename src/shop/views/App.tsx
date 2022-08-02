@@ -8,7 +8,6 @@ import PageProducts from './container/PageProducts';
 
 
 function App() {
-
     return (
         <BrowserRouter basename={window.location.pathname || ''}>
             <Layout>
