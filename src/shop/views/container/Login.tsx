@@ -129,6 +129,8 @@ function Login(props: Props) {
     function responseFacebook(response) {
         console.log(response);
         props.facebookLogin(response);
+        resetInput();
+        navigate(URL.member);
     }
 
     return (
