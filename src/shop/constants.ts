@@ -3,6 +3,11 @@ export const LOCAL_URL = "http://192.168.50.48:8000/";
 
 export const PATH_HOME = {name: 'Home', url:'/', hover: '首頁'};
 
+export const NODE_ENV = {
+    development: "development",
+    production: "production"
+}
+
 export interface I_NavLinks {
     name: string;
     url: string;
@@ -13,17 +18,18 @@ export interface I_NavLinks {
 
 export const URL = {
     login: "/login",
-    logout: "/logout",
+    //logout: "/logout",
     member: "/member",
     products: "/products",
     wishlist: "/wishlist",
-    cart: "/cart"
+    cart: "/cart",
+    home: "/",
 }
 
 export const NAV_LINKS: I_NavLinks[] = [
     // {name: "Search", url:"/search", hover: "搜尋", iconClassName: "material-icons", icon: "search"},
     //{name: "Login", url:"/login", hover: "登入"},
-    //{name: "Log out", url:"/shop/logout", hover: "登出"},
+    //{name: "Log out", url:"logout", hover: "登出"},
     {name: "Member", url:"/member", hover: "會員", iconClassName: "material-icons", icon: "person_outline"},
     //{name: "Products", url:"/products", hover: "商品"},
     {name: "Wish List", url:"/wishlist", hover: "收藏清單", iconClassName: "material-icons", icon: "favorite_border"},

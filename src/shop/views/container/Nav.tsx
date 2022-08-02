@@ -7,9 +7,15 @@ import Dropdown from '../components/Dropdown';
 import Button from '../components/Button';
 import { URL } from "@shop/constants";
 
+import { connect } from "react-redux";
+import {actionOperations} from '@shop/state/ducks/Product';
+import {actionOperations as MemberActions} from '@shop/state/ducks/Member';
+
 interface I_Props {
     searchProduct: (search: string) => void;
+    logout: (id: number) => void;
     links: I_NavLinks[];
+    userID: number;
 }
 
 const StyleWrapper = styled.nav`
@@ -87,7 +93,7 @@ const StyleWrapper = styled.nav`
 function Nav(props: I_Props) {
     const mobileMenuRef = useRef<HTMLDivElement>();
     const searchRef = useRef<HTMLInputElement>();
-    const {links = []} = props;
+    const {userID, links = [], searchProduct, logout} = props;
     const navigate = useNavigate();
 
     function showMobileMenu(show: boolean) {
@@ -101,10 +107,21 @@ function Nav(props: I_Props) {
 
     function toggleSearch(e: React.MouseEvent<HTMLElement>) {
         if (e.currentTarget.classList.contains("active") && searchRef.current.value.length > 0){
-            props.searchProduct(searchRef.current.value);
+            searchProduct(searchRef.current.value);
             navigate(URL.products);
         }
         e.currentTarget.classList.toggle("active");
+    }
+
+    function handleLogout(e) {
+        e.preventDefault();
+        console.log('Logout');
+
+        localStorage.clear();
+        sessionStorage.clear();
+
+        logout(userID);
+        navigate(URL.home);
     }
 
     return (
@@ -114,6 +131,11 @@ function Nav(props: I_Props) {
                 <div className="btn-close" onClick={() => showMobileMenu(false)}>&times;</div>
                 <SidebarContainer />
             </div>
+            {
+                userID !== undefined &&
+                <Button name="Log out" hover="登出" handleClick={logout} />
+
+            }
             {
                 links.length > 0 &&
                 links.map((m, i) =>
@@ -140,4 +162,20 @@ function Nav(props: I_Props) {
     )
 }
 
-export default Nav;
+
+const mapStateToProps = (state) => ({
+    userID: state.setMember.user.id,
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    searchProduct: (search: string) => {
+        dispatch(actionOperations.searchProduct(search));
+    },
+    logout: (id: number) => {
+        dispatch(MemberActions.logout(id));
+    }
+})
+
+const NavConatiner = connect(mapStateToProps, mapDispatchToProps)(Nav);
+
+export default NavConatiner;

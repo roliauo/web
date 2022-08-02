@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 interface Props {
     name: string;
     url?: string;
+    api?: string;
     hover?: string;
     icon?: string;
     iconClassName?: string;

@@ -20,7 +20,7 @@ export default function View() {
                     testArr.map((m) => <Card key={m} title={`Test ${m}`} info={`info ${m}...`}/>)
                 }
                 <Card title="Test" info="info..."/>
-            </div>            
+            </div>
         </StyleWrapper>
-    )  
+    )
 }

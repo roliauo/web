@@ -26,8 +26,8 @@ class HttpClient { //implements IHttpClient
         const response = await this._http.put(url, params, config);
         return response.data;
     }
-    public async delete(url: string): Promise<any> {
-        const response = await this._http.delete(url);
+    public async delete(url: string, params?: any): Promise<any> {
+        const response = await this._http.delete(url, { data: params });
         return response;
     }
 }

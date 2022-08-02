@@ -1,7 +1,6 @@
 import dataService from '../../service/dataService';
 
-// action types
-export const actionTypes = {
+const actionTypes = {
     UPDATE_PRODUCT_LIST: 'UPDATE_PRODUCT_LIST',
     UPDATE_PRODUCT_DETAIL_PAGE: 'UPDATE_PRODUCT_DETAIL_PAGE'
 }

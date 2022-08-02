@@ -1,13 +1,14 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-//import rootReducers from "./ducks/rootReducers";
 import setCart from './ducks/Cart';
 import setSidebar from "./ducks/Sidebar";
 import setProduct from "./ducks/Product";
+import setMember from "./ducks/Member";
 
 const rootReducers = combineReducers({
     setCart,
     setSidebar,
     setProduct,
+    setMember
 })
 
 export default configureStore({

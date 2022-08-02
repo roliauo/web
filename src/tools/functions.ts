@@ -10,3 +10,11 @@ export function useTitle(title: string): void {
     };
   }, []);
 }
+
+function filterObjectByKey(json, key) {
+	let res;
+	Object.keys(json)
+		.filter((k) => k == key)
+		.forEach((k) => Object.assign(res, {[k]: json[k]}))
+	return res;
+}
