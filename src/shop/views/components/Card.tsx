@@ -15,6 +15,7 @@ const StyleWrapper = styled.div`
     flex-flow: column;
     // background: #cecece;
     background: transparent;
+    width: 240px;
     margin: 1rem;
     overflow: hidden;
 
@@ -84,7 +85,7 @@ export default function Card(props: Props) {
     return (
         <StyleWrapper>
             <a href="#" className="link">
-                <img src={item.images[0]} />
+                <img src={item.images[0]} title={item.title}/>
                 {
                     (type === 'hover' || type === 'all') &&
                     <div className="hover-info">
@@ -100,7 +101,7 @@ export default function Card(props: Props) {
                         <i className="material-icons">favorite_border</i>
                         <i className="material-icons">add_shopping_cart</i>
                     </div>
-                    <div>
+                    <div className="text-overflow">
                         {item.title}
                     </div>
                     <div>
