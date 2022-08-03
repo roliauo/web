@@ -9,6 +9,11 @@ export const NODE_ENV = {
     production: "production"
 }
 
+export const STORAGE_KEY = {
+    CART: 'CART',
+    WISH_LIST: 'WISH_LIST'
+}
+
 export interface I_NavLinks {
     name: string;
     url: string;

@@ -7,6 +7,8 @@ import { I_ProductItem } from "@shop/state/ducks/Product";
 
 import { connect } from "react-redux";
 import {actionOperations} from '@shop/state/ducks/Product';
+import { actionOperations as CartOperations } from "@shop/state/ducks/Cart";
+import { STORAGE_KEY } from "@shop/constants";
 
 const StyleWrapperTwoColumns = styled.div`
     display: flex;
@@ -45,6 +47,8 @@ function PageItem({item: I_ProductItem}) {
 
 interface Props {
     getProductList: (skip?: number) => void;
+    addCart: (item: I_ProductItem) => void;
+    addToWishList: (item: I_ProductItem) => void;
     list: I_ProductItem[];
     item: I_ProductItem;
     total: number;
@@ -54,13 +58,24 @@ interface Props {
 
 function PageProducts(props: Props) {
     const [showItem, setShowItem] = useState(false);
+    const [wishlist, setWishlist] = useState<I_ProductItem[]>(JSON.parse(localStorage.getItem(STORAGE_KEY.WISH_LIST)) || []);
 
     useEffect(() => {
         props.getProductList();
     }, [])
 
+    // useEffect(() => {
+    //     setWishlist(JSON.parse(localStorage.getItem(STORAGE_KEY.WISH_LIST)));
+    // }, [JSON.stringify(localStorage.getItem(STORAGE_KEY.WISH_LIST))])
+
+
     function handleChangePages(page: number) {
         props.getProductList((page - 1) * props.limit);
+    }
+
+    async function handleAddWishlist(item: I_ProductItem) {
+        await props.addToWishList(item);
+        setWishlist(JSON.parse(localStorage.getItem(STORAGE_KEY.WISH_LIST)));
     }
 
     return (
@@ -80,7 +95,7 @@ function PageProducts(props: Props) {
                         <div className="flex-center">
                             {
                                 props.list.map((m) =>
-                                    <Card key={m.id} item={m} type='shopping'/>
+                                    <Card key={m.id} item={m} type='shopping' favorite={wishlist.findIndex((f) => f.id === m.id) > -1} handleAddCart={() => props.addCart(m)} handleAddWishlist={() => handleAddWishlist(m)}/>
                                 )
                             }
                         </div>
@@ -104,6 +119,12 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     getProductList: (skip?: number) => {
         dispatch(actionOperations.getProductList(skip));
+    },
+    addCart: (item) => {
+        dispatch(CartOperations.addToCart(item));
+    },
+    addToWishList: (item: I_ProductItem) => {
+        dispatch(CartOperations.addToWishList(item));
     }
 })
 

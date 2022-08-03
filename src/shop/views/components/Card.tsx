@@ -3,8 +3,12 @@ import React from "react";
 import styled from "styled-components";
 
 interface Props {
-    type?: 'hover' | 'shopping' | 'all';
+    type?: 'hover' | 'shopping' | 'wishlist';
     item: I_ProductItem;
+    handleAddCart?: () => void;
+    handleAddWishlist?: () => void;
+    handleRemoveWishlist?: () => void;
+    favorite?: boolean;
     // title: string;
     // info: string;
     // imgSrc?: string;
@@ -80,14 +84,14 @@ const StyleWrapper = styled.div`
 `
 
 export default function Card(props: Props) {
-    const {item, type} = props;
+    const {item, type, favorite, handleAddCart, handleAddWishlist, handleRemoveWishlist} = props;
 
     return (
         <StyleWrapper>
             <a href="#" className="link">
                 <img src={item.images[0]} title={item.title}/>
                 {
-                    (type === 'hover' || type === 'all') &&
+                    (type === 'hover') &&
                     <div className="hover-info">
                         <div className="title">{item.title}</div>
                         <span>{item.description}</span>
@@ -95,11 +99,21 @@ export default function Card(props: Props) {
                 }
             </a>
             {
-                (type === 'shopping' || type === 'all') &&
+                (type === 'shopping' || type === 'wishlist') &&
                 <div className="shopping">
                     <div className="icons">
-                        <i className="material-icons">favorite_border</i>
-                        <i className="material-icons">add_shopping_cart</i>
+                        {
+                            handleAddWishlist &&
+                            <i className="material-icons" onClick={() => handleAddWishlist()}>{favorite ? 'favorite' : 'favorite_border'}</i>
+                        }
+                        {
+                            handleRemoveWishlist &&
+                            <i className="material-icons" onClick={() => handleRemoveWishlist()}>delete</i>
+                        }
+                        {
+                            handleAddCart &&
+                            <i className="material-icons" onClick={() => handleAddCart()}>add_shopping_cart</i>
+                        }
                     </div>
                     <div className="text-overflow">
                         {item.title}

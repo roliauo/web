@@ -7,6 +7,8 @@ import PageMember from "./container/PageMember";
 import PageProducts from './container/PageProducts';
 import TextPage from "./components/TextPage";
 import {URL} from '../constants';
+import WishList from "./container/WishList";
+import Cart from "./container/Cart";
 
 
 function App() {
@@ -20,8 +22,8 @@ function App() {
                     <Route path={URL.login} element={<Login/>} />
                     <Route path={URL.member} element={<PageMember/>} />
                     <Route path={URL.privacy} element={<TextPage type="privacy"/>} />
-                    {/* <Route path='/wishlist' element={<PageWishList/>} />
-                    <Route path='/cart' element={<PageCart/>} /> */}
+                    <Route path={URL.wishlist} element={<WishList/>} />
+                    <Route path={URL.cart} element={<Cart/>} />
                 </Routes>
             </Layout>
         </HashRouter >
