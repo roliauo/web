@@ -129,7 +129,7 @@ function Apps() {
                 Mandy Lin
             </div>
             <div className="links-container">
-                <a href="./app_redux" className="btn"> Apps </a>
+                <a href="#" className="btn"> Apps (in progress...) </a>
                 <a href="./shop" className="btn"> Shop </a>
             </div>
             <div className="version">
