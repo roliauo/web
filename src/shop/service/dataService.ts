@@ -1,19 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { I_ProductItem } from "@shop/state/ducks/Product";
 import httpClient from "./httpClient";
 
-export interface I_ProductItem {
-    id: number;
-    title: string;
-    description: string;
-    price: number;
-    discountPercentage: number;
-    rating: number;
-    stock: number;
-    brand: string;
-    category: string;
-    thumbnail: string;
-    images: string[];
-  }
 interface I_ProductList {
     products: I_ProductItem[];
     total: number;

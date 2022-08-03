@@ -7,6 +7,9 @@ const authService = {
     },
     logout(params): Promise<any> {
         return httpClient.post('https://dummyjson.com/auth/logout', params);
+    },
+    deleteFacebookAccount(id): Promise<any> {
+        return httpClient.get(`https://roliauo.github.io/web/shop/member?delete=${id}`);
     }
 }
 
