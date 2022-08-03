@@ -80,7 +80,7 @@ function PageProducts(props: Props) {
                         <div className="flex-center">
                             {
                                 props.list.map((m) =>
-                                    <Card key={m.id} title={m.title} info={m.description} imgSrc={m.images[0]}/>
+                                    <Card key={m.id} item={m} type='shopping'/>
                                 )
                             }
                         </div>

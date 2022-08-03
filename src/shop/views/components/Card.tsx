@@ -1,16 +1,20 @@
+import { I_ProductItem } from "@shop/state/ducks/Product";
 import React from "react";
 import styled from "styled-components";
 
 interface Props {
-    title: string;
-    info: string;
-    imgSrc?: string;
+    type?: 'hover' | 'shopping' | 'all';
+    item: I_ProductItem;
+    // title: string;
+    // info: string;
+    // imgSrc?: string;
 }
+
 const StyleWrapper = styled.div`
     display: inline-flex;
-    width: 240px;
-    height: 312px;
-    background: #cecece;
+    flex-flow: column;
+    // background: #cecece;
+    background: transparent;
     margin: 1rem;
     overflow: hidden;
 
@@ -37,11 +41,11 @@ const StyleWrapper = styled.div`
     .link {
         position: relative;
         display: block;
-        height: inherit;
-        width: 100%;
+        width: 240px;
+        height: 312px;
     }
 
-    .info {
+    .hover-info {
         position: absolute;
         bottom: 0px;
         height: 0px;
@@ -54,24 +58,58 @@ const StyleWrapper = styled.div`
         visibility: hidden;
     }
 
-    .link:hover .info {
+    .link:hover .hover-info {
         height: 80px;
         opacity: 1;
         visibility: visible;
     }
+
+    .icons {
+        display: flex;
+        justify-content: space-between;
+        margin: 0.5rem 0;
+        i {
+            cursor: pointer;
+        }
+    }
+
+    .shopping {
+        padding: 0.5rem;
+    }
 `
 
 export default function Card(props: Props) {
-    const {title, info, imgSrc} = props;
+    const {item, type} = props;
+
     return (
         <StyleWrapper>
             <a href="#" className="link">
-                <img src={imgSrc} />
-                <div className="info">
-                    <div className="title">{title}</div>
-                    <span>{info}</span>
-                </div>
+                <img src={item.images[0]} />
+                {
+                    (type === 'hover' || type === 'all') &&
+                    <div className="hover-info">
+                        <div className="title">{item.title}</div>
+                        <span>{item.description}</span>
+                    </div>
+                }
             </a>
+            {
+                (type === 'shopping' || type === 'all') &&
+                <div className="shopping">
+                    <div className="icons">
+                        <i className="material-icons">favorite_border</i>
+                        <i className="material-icons">add_shopping_cart</i>
+                    </div>
+                    <div>
+                        {item.title}
+                    </div>
+                    <div>
+                        USD {item.price}
+                    </div>
+
+                </div>
+            }
         </StyleWrapper>
     )
+
 }

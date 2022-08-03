@@ -1,26 +1,63 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Card from "../components/Card";
 import Slideshow from "../components/Slideshow";
 import { SLIDESHOWS_BANNER_URL } from "../../constants";
 
+import { connect } from "react-redux";
+import { actionOperations, I_ProductItem } from "@shop/state/ducks/Product";
+
 
 const StyleWrapper = styled.div``
 
-export default function View() {
+interface Props {
+    getProductList: (skip?: number) => void;
+    list: I_ProductItem[];
+    item: I_ProductItem;
+    total: number;
+    skip: number;
+    limit: number;
+}
+
+function Home(props: Props) {
     const testArr = Array.from(Array(20).keys());
+
+    useEffect(() => {
+        props.getProductList();
+    }, [])
 
     return (
         <StyleWrapper>
             <Slideshow slideshows={SLIDESHOWS_BANNER_URL}/>
 
             <div className="flex-center">
-                <Card title="Test" info="info..." imgSrc="https://photo.veryyou.com.tw/Veryyou/Photo/PDImg/76230140/M/76230140.jpg"/>
                 {
-                    testArr.map((m) => <Card key={m} title={`Test ${m}`} info={`info ${m}...`}/>)
+                    props.list.map((m) =>
+                        <Card key={m.id} item={m} type='hover'/>
+                    )
                 }
-                <Card title="Test" info="info..."/>
+                {/* {
+                    testArr.map((m) => <Card key={m} title={`Test ${m}`} info={`info ${m}...`}/>)
+                } */}
             </div>
         </StyleWrapper>
     )
 }
+
+const mapStateToProps = (state) => ({
+    list: state.setProduct.list,
+    item: state.setProduct.item,
+    total: state.setProduct.total,
+    skip: state.setProduct.skip,
+    limit: state.setProduct.limit,
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    getProductList: (skip?: number) => {
+        dispatch(actionOperations.getProductList(skip));
+    }
+})
+
+const PageProductsContainer = connect(mapStateToProps, mapDispatchToProps)(Home);
+
+export default PageProductsContainer;
