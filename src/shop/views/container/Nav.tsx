@@ -39,6 +39,20 @@ const StyleWrapper = styled.nav`
         transition: left .3s;
     }
 
+    .mobile-menu-bg {
+        display: none
+        position: fixed;
+        z-index: 1;
+        padding-top: 100px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto; /* Enable scroll */
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4);
+    }
+
     .mobile-menu {
         height: 100%;
         width: 0;
@@ -53,6 +67,11 @@ const StyleWrapper = styled.nav`
 
         &.active {
             width: 250px;
+            box-shadow: 0 0 2rem 0 rgb(0 0 0 / 50%);
+        }
+
+        &.active + .modal {
+            display: block;
         }
 
         .btn-close {
@@ -131,6 +150,8 @@ function Nav(props: I_Props) {
                 <div className="btn-close" onClick={() => showMobileMenu(false)}>&times;</div>
                 <SidebarContainer />
             </div>
+            <div className="modal" />
+
             {
                 userID !== undefined &&
                 <Button name="Log out" hover="登出" handleClick={handleLogout} />

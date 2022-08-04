@@ -61,7 +61,9 @@ function PageProducts(props: Props) {
     const [wishlist, setWishlist] = useState<I_ProductItem[]>(JSON.parse(localStorage.getItem(STORAGE_KEY.WISH_LIST)) || []);
 
     useEffect(() => {
-        props.getProductList();
+        if (props.list.length < 1) {
+            props.getProductList();
+        }
     }, [])
 
     // useEffect(() => {

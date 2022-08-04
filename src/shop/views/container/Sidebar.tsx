@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import CollapsibleMenu from "../components/CollapsibleMenu";
 
 import {I_MenuItem} from '../components/CollapsibleMenu';
@@ -16,6 +17,7 @@ const StyleWrapper = styled.div`
 
 function Sidebar(props: Props) {
     const [clickedItem, setClickedItem] = useState<string|number>(-1);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (props.menu.length == 0) {
@@ -27,6 +29,7 @@ function Sidebar(props: Props) {
         if (clickedItem === item.id) return;
         setClickedItem(item.id);
         props.getProductListByCategory(item.id);
+        navigate(URL.products);
     }
 
     return (
@@ -37,6 +40,7 @@ function Sidebar(props: Props) {
                     <CollapsibleMenu key={m.id} menuItems={m} handleClickItem={handleClickItem}/>
                 )
             }
+
         </StyleWrapper>
     )
 
@@ -45,6 +49,7 @@ function Sidebar(props: Props) {
 import { connect } from "react-redux";
 import { actionOperations } from "@shop/state/ducks/Sidebar";
 import * as Product from "@shop/state/ducks/Product";
+import { URL } from "@shop/constants";
 
 const mapStateToProps = (state) => ({
     menu: state.setSidebar.menu,

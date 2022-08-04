@@ -69,7 +69,7 @@ const StyleWrapper = styled.div`
         text-align: center;
         line-height: 30px;
 
-        font-family: Papyrus,fantasy;
+        font-family: Papyrus,fantasy,sans-serif;
         color: burlywood;
         font-weight: bold;
 
