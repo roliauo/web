@@ -33,6 +33,10 @@ const StyleWrapperTwoColumns = styled.div`
     @media (max-width: 768px) {
         > aside {
             display: none;
+            flex: 0;
+        }
+        > main {
+            flex: 100%;
         }
     }
 `;
