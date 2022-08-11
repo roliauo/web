@@ -8,7 +8,7 @@ const StyleWrapper = styled.div`
     display: flex;
     align-items: center;
 
-    img {
+    a, img {
         height: inherit;
     }
 
@@ -51,7 +51,9 @@ function Header(props: Props) {
 
     return (
         <StyleWrapper>
-            <img alt="logo" src="logo.png"></img>
+            <a href="./">
+                <img alt="logo" src="logo.png"></img>
+            </a>
             <div className="search">
                 <input type="text" ref={searchRef} name="Search" placeholder="Search" />
                 <i className="material-icons" onClick={handleSearch}>search</i>

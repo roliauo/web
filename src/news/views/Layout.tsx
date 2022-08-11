@@ -13,8 +13,6 @@ const StyleWrapper = styled.div`
     header {
         background: #fff;
         height: var(--header-height);
-        padding: 1rem 2rem;
-        // background: aliceblue;
         position: fixed;
         top: 0;
         width: 100%;
