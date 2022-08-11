@@ -2,7 +2,7 @@
 
 import React, { useState} from 'react';
 import styled from 'styled-components';
-import classnames from 'classnames';
+// import classnames from 'classnames';
 //import AppContext from '@settings/components/AppContext';
 
 
@@ -361,12 +361,12 @@ export default function (props: Props) {
                                     key={`expandingIcon-${key}`}
                                     onClick={() => handleOnUpdateExpandingRowDatas(data)}
                                 >
-                                    <i
+                                    {/* <i
                                         className={classnames('', {
                                             'icon-expand_4': !expandingFlag,
                                             'icon-collapse_4': expandingFlag,
                                         })}
-                                    />
+                                    /> */}
 
                                 </TableCell>
                                 :
