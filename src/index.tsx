@@ -129,8 +129,9 @@ function Apps() {
                 Mandy Lin
             </div>
             <div className="links-container">
-                <a href="#" className="btn"> Apps (in progress...) </a>
                 <a href="./shop" className="btn"> Shop </a>
+                <a href="./news" className="btn"> News </a>
+                <a href="#" className="btn"> Apps (in progress...) </a>
             </div>
             <div className="version">
                 version: {version}

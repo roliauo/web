@@ -11,7 +11,7 @@ const commitDate = require('child_process').execSync('git log -1 --date=format:"
 
 const getEntry = () => {
     const entry = {};
-    const apps = ['app_redux', 'shop'];
+    const apps = ['news', 'shop'];
     entry['index'] = './src/index.tsx';
     apps.forEach((name) => {
         entry[name] = `./src/${name}/index.tsx`
@@ -31,7 +31,7 @@ const config = {
             rewrites: [
                 //{ from: /^(\/(login)?)?$/, to: '/login.html' },
                 { from: /^\/$/, to: '/index.html' },
-                { from: /^\/app_redux$/, to: '/app_redux.html' },
+                { from: /^\/news$/, to: '/news.html' },
                 { from: /^\/shop/, to: '/shop.html' },
                 // { from: /^\/apps$/, to: '/apps.html' },
                 //{ from: /./, to: '/views/404.html' },
