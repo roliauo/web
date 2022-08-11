@@ -11,23 +11,25 @@ const StyleWrapper = styled.div`
     min-width: 300px;
 
     header {
+        background: #fff;
         height: var(--header-height);
         padding: 1rem 2rem;
-        background: aliceblue;
+        // background: aliceblue;
         position: fixed;
         top: 0;
         width: 100%;
         z-index: 100;
+        border-bottom: var(--border);
     }
 
     footer {
+        background: #fff;
         height: var(--footer-height);
         padding: 1rem;
         position: fixed;
         bottom: 0;
-        background: #fff;
         width: 100%;
-        // background: aliceblue;
+        border-top: var(--border);
     }
 
     .content {

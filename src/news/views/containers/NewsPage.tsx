@@ -36,14 +36,14 @@ const StyleWrapper = styled.div`
 
 interface Props {
     list: I_NewsInfo[];
+    getNews: () => void;
 }
 
 function NewsPage(props: Props) {
 
     useEffect(() => {
         if (props.list.length < 1) {
-            console.log("getNews!!")
-            // props.getNews();
+            props.getNews();
         }
     }, [])
 

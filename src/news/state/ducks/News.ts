@@ -36,6 +36,12 @@ export const actionOperations = {
                 dispatch(updateNewsList(category, resData));
             })
     },
+    searchNews: (search: string) => (dispatch) => {
+        dataService.searchNews(search)
+            .then((resData) => {
+                dispatch(updateNewsList(search, resData));
+            })
+    },
 }
 
 // reducer

@@ -10,7 +10,10 @@ const dataService = {
     },
     getNewsByCategory(category: string): Promise<any> {
         return httpClient.get(`https://newsapi.org/v2/top-headlines?category=${category}&apiKey=${KEY_API}`)
-    }
+    },
+    searchNews(search: string) : Promise<any> {
+        return httpClient.get(`https://newsapi.org/v2/top-headlines?q=${search}&apiKey=${KEY_API}`)
+    },
 }
 
 export default dataService;

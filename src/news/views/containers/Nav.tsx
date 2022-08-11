@@ -10,7 +10,6 @@ const StyleWrapper = styled.div`
         display: block;
     }
     .link {
-        // display: flex;
         position: relative;
         background: inherit;
         color: inherit;
@@ -19,14 +18,14 @@ const StyleWrapper = styled.div`
         transition: .3s;
         cursor: pointer;
         padding: 1rem 0;
-        color: #444;
+        color: var(--main-color);
 
         >span {
             width: inherit;
         }
 
-        :hover {
-            color: #0682a8;
+        &.active, :hover {
+            color: var(--main-color-highlight);
         }
 
         i {
@@ -47,6 +46,7 @@ const StyleWrapper = styled.div`
 `
 
 interface Props {
+    category: string;
     links: I_NavLinks[];
     getNews: (category: string) => void;
     getNewsByCountry: (country: string) => void;
@@ -54,7 +54,7 @@ interface Props {
 }
 
 function Nav(props: Props) {
-    const {links} = props;
+    const {links, category} = props;
 
     function handleClick(path) {
         if (path.length == 1) {
@@ -72,7 +72,7 @@ function Nav(props: Props) {
             {
                 links.length > 0 &&
                 links.map((m:I_NavLinks, i) =>
-                    <Link key={i} className="link" to={m.url} onClick={() => handleClick(m.url)}>
+                    <Link key={i} className={category === m.url ? "link active" : "link"} to={m.url} onClick={() => handleClick(m.url)}>
                         <i className="material-icons">{m.icon}</i>
                         <span> {m.name} </span>
                     </Link>
@@ -82,6 +82,9 @@ function Nav(props: Props) {
     )
 }
 
+const mapStateToProps = (state) => ({
+    category: state.setNews.category
+})
 
 const mapDispatchToProps = (dispatch) => ({
     getNews: () => {
@@ -95,6 +98,6 @@ const mapDispatchToProps = (dispatch) => ({
     },
 })
 
-const NavContainer = connect(null, mapDispatchToProps)(Nav);
+const NavContainer = connect(mapStateToProps, mapDispatchToProps)(Nav);
 
 export default NavContainer;
