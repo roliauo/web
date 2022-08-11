@@ -152,6 +152,10 @@ const config = {
                     from: 'src/favicon.ico',
                     to: 'favicon.ico',
                 },
+                {
+                    from: 'src/logo.png',
+                    to: 'logo.png',
+                },
             ]
         }),
         new MiniCssExtractPlugin({

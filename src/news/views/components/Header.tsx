@@ -51,7 +51,7 @@ function Header(props: Props) {
 
     return (
         <StyleWrapper>
-            <img alt="logo" src="https://1000logos.net/wp-content/uploads/2017/12/Bing-logo.png"></img>
+            <img alt="logo" src="logo.png"></img>
             <div className="search">
                 <input type="text" ref={searchRef} name="Search" placeholder="Search" />
                 <i className="material-icons" onClick={handleSearch}>search</i>

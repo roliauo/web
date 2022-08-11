@@ -30,7 +30,7 @@ export default function Footer() {
                     </div>
                 )
             }
-            <span> © 2021 Microsoft </span>
+            <span> © 2022 roliauo </span>
         </StyleWrapper>
     )
 }
