@@ -48,6 +48,11 @@ export const actionOperations = {
         cart.push(item);
         localStorage.setItem(STORAGE_KEY.CART, JSON.stringify(cart));
     },
+    getWishList: () => (dispatch) => {
+        localStorage.setItem(STORAGE_KEY.WISH_LIST, JSON.stringify([]));
+
+        return JSON.parse(localStorage.getItem(STORAGE_KEY.WISH_LIST));
+    },
     addToWishList: (item: I_ProductItem) => (dispatch) => {
         const wishlist = JSON.parse(localStorage.getItem(STORAGE_KEY.WISH_LIST)) || [];
         wishlist.push(item);
