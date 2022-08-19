@@ -6,6 +6,8 @@
         "baseUrl": "src",
         "esModuleInterop": true,
         "lib": [
+            "es6",
+            "es2017",
             "dom",
             "esnext",
             "scripthost"
