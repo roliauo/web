@@ -10,6 +10,8 @@ const StyleWrapper = styled.div`
 
     .todo {
         display: flex;
+        align-items: center;
+        height: 2rem;
         padding: 1rem;
         border: var(--border-light);
 
@@ -24,10 +26,18 @@ const StyleWrapper = styled.div`
 
         .edit {
             flex-grow: 2;
+            height: 100%;
             display: none;
+            outline: none;
+            border: none;
             &.active {
                 display: inline-block;
+                background: aliceblue;
             }
+        }
+
+        .edit.active + .item {
+            display: none;
         }
     }
 
@@ -51,6 +61,7 @@ export default function TodoList () {
     function onEdit(index: number) {
         const target = editRef.current[index];
         target.classList.toggle("active");
+        target.focus();
         if (target.value.trim().length !== 0 && items[index] !== target.value){
             items[index] = target.value;
             target.value = "";
@@ -79,10 +90,10 @@ export default function TodoList () {
             {
                 items.map((m, i) => (
                     <div key={i} className="todo">
+                        <input type="text" className="edit" placeholder={m} ref={el => editRef.current[i] = el} />
                         <div className="item" onClick={(e) => toggleComplete(e,i)}>
                             {m}
                         </div>
-                        <input type="text" className="edit" ref={el => editRef.current[i] = el} />
                         <div className="btn" onClick={() => onEdit(i)}> edit </div>
                         <div className="btn" onClick={() => onDelete(i)}> X </div>
                     </div>
