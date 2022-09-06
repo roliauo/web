@@ -100,6 +100,10 @@ const config = {
         new CopyWebpackPlugin({
             patterns: [
                 {
+                    from: 'src/news/data',
+                    to: 'data/news',
+                },
+                {
                     from: 'src/shop/data',
                     to: 'data/shop',
                 },
