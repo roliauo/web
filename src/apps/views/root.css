@@ -1,0 +1,47 @@
+:root {
+    --header-height: 120px;
+    --footer-height: 80px;
+    --nav-width: 200px;
+    --nav-min-width: 60px;
+    --main-height: calc(100vh - var(--header-height) - var(--footer-height));
+
+    --main-color: #444;
+    --main-color-highlight: #0682a8;
+
+    --border-light: 0.5px solid #eee;
+    --border: 2px solid #eee;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: monospace, 微軟正黑體;
+    font-size: 14px;
+    user-select: none;
+    color: #333;
+}
+
+div {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    outline: none;
+} */
