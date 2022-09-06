@@ -30,6 +30,7 @@ const config = {
     resolve: {
         alias: {
             '@shop': path.resolve(__dirname, './src/shop'),
+            '@common': path.resolve(__dirname, './src/common'),
         },
         extensions: ['.ts', '.tsx', '.js', '.json'],
     },

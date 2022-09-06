@@ -18,6 +18,7 @@
         "paths": {
             "*": ["node_modules/*"],
             "@shop/*": ["shop/*"],
+            "@common/*": ["common/*"],
         },
         "sourceMap": true,
         "removeComments": true,
