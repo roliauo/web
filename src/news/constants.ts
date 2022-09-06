@@ -1,6 +1,11 @@
 export const LOCAL_URL = "http://192.168.50.48:8000/";
 export const KEY_API = "f1f35a9379e143c1aa20a856a56c9352";
 
+export const NODE_ENV = {
+    development: "development",
+    production: "production"
+}
+
 export interface I_NavLinks {
     name: string;
     url: string;
